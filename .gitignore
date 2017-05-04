@@ -2,3 +2,8 @@ django_uswds_forms.egg-info/
 venv/
 *.sqlite3
 __pycache__
+.python-version
+.tox/
+.coverage
+htmlcov/
+.cache/
