@@ -1,0 +1,14 @@
+<fieldset>
+  <!-- TODO: Original CALC code added .fieldset-error to the
+       <fieldset> if the field had errors, but that wasn't a uswds thing. -->
+  {{ field.errors }}
+  {% if use_legend %}
+    <legend>{{ field.label }}</legend>
+  {% else %}
+    {{ field.label_tag }}
+  {% endif %}
+  {{ field }}
+  {% if field.help_text %}
+    <p class="usa-form-hint">{{ field.help_text }}</p>
+  {% endif %}
+</fieldset>
