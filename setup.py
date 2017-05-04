@@ -20,7 +20,7 @@ setup(name='django-uswds-forms',
       install_requires=[
           'django>=1.8,<2',
       ],
-      test_suite='uswds_forms.runtests.run_tests',
+
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Environment :: Web Environment',
