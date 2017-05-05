@@ -9,7 +9,8 @@ class UswdsErrorList(ErrorList):
     def as_html(self):
         # No idea what this line is for, but it's shown in sample code:
         # https://docs.djangoproject.com/en/1.11/ref/forms/api/
-        if not self: return ''
+        if not self:
+            return ''
 
         return render_to_string('uswds_forms/errors.html', {
             'errors': self
