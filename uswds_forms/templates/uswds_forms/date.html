@@ -1,9 +1,6 @@
 <span class="usa-form-hint" id="{{ hint_id }}">For example: 04 28 2016</span>
 
-<!-- TODO: <uswds-date> is a HTML5 Custom Element in CALC, though it
-     does gracefully degrade to an unknown element that renders
-     OK independently. -->
-<uswds-date class="usa-date-of-birth">
+<div class="usa-date-of-birth">
   <div class="usa-form-group usa-form-group-month">
     <label for="{{ month.id }}">Month</label>
 
@@ -17,4 +14,4 @@
     <label for="{{ year.id }}">Year</label>
     <input class="usa-input-inline" aria-describedby="{{ hint_id }}" id="{{ year.id }}" name="{{ year.name }}" pattern="[0-9]{4}" type="number" min="1900" max="9999" value="{{ year.value }}">
   </div>
-</uswds-date>
+</div>
