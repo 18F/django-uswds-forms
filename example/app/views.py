@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django import forms
 from uswds_forms.radio_and_checkbox import UswdsRadioSelect, UswdsCheckbox
 from uswds_forms.date import SplitDateField
+from uswds_forms.errors import UswdsErrorList
 
 
 class ExampleForm(forms.Form):
@@ -31,10 +32,14 @@ class ExampleForm(forms.Form):
 
 
 def home(request):
+    form_kwargs = dict(
+        error_class=UswdsErrorList
+    )
+
     if request.method == 'POST':
-        form = ExampleForm(request.POST)
+        form = ExampleForm(request.POST, **form_kwargs)
     else:
-        form = ExampleForm()
+        form = ExampleForm(**form_kwargs)
 
     return render(request, 'home.html', {
         'form': form
