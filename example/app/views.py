@@ -31,9 +31,10 @@ class ExampleForm(forms.Form):
 
 
 def home(request):
-    # TODO: If this is a POST, process the form.
-
-    form = ExampleForm()
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+    else:
+        form = ExampleForm()
 
     return render(request, 'home.html', {
         'form': form
