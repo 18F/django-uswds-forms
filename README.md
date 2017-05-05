@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/18F/django-uswds-forms.svg?branch=master)](https://travis-ci.org/18F/django-uswds-forms)
+
 This is a work-in-progress and may eventually be subsumed into
 [django-designstandards][] depending on what's best for everyone.
 
