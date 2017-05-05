@@ -12,9 +12,9 @@ class ExampleForm(forms.Form):
         help_text=("If you don't see your favorite, just pick your "
                    "favorite of the ones we've listed."),
         choices=(
-            ('george', 'George Washington'),
-            ('john', 'John Adams'),
-            ('thomas', 'Thomas Jefferson'),
+            ('washington', 'George Washington'),
+            ('adams', 'John Adams'),
+            ('jefferson', 'Thomas Jefferson'),
         )
     )
 
@@ -27,10 +27,11 @@ class ExampleForm(forms.Form):
     states = forms.MultipleChoiceField(
         label="What states have you visited?",
         widget=UswdsCheckbox,
+        required=False,
         choices=(
-            ('oh', 'Ohio'),
-            ('il', 'Illinois'),
-            ('ca', 'California'),
+            ('OH', 'Ohio'),
+            ('IL', 'Illinois'),
+            ('CA', 'California'),
         )
     )
 
