@@ -33,10 +33,12 @@ body {
 <form method="post">
   {% csrf_token %}
   {% load uswds_forms %}
-  {% fieldset form.president %}
-  {% fieldset form.park %}
-  {% fieldset form.states %}
-  {% fieldset form.date %}
+  <ol>
+    <li>{% fieldset form.president %}</li>
+    <li>{% fieldset form.park %}</li>
+    <li>{% fieldset form.states %}</li>
+    <li>{% fieldset form.date %}</li>
+  </ol>
   <button type="submit">Submit</button>
   <button type="submit" class="usa-button-secondary" formnovalidate>
     Submit without HTML5 form validation
