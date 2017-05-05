@@ -18,6 +18,12 @@ class ExampleForm(forms.Form):
         )
     )
 
+    park = forms.CharField(
+        label=("If you could choose the name of the next national park, "
+               "what would it be?"),
+        help_text='Note that "Parky McParkface" is not a valid response.'
+    )
+
     states = forms.MultipleChoiceField(
         label="What states have you visited?",
         widget=UswdsCheckbox,
