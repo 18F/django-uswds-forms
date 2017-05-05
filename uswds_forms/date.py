@@ -69,6 +69,11 @@ class SplitDateWidget(MultiWidget):
 
         year, month, day = widget_infos
 
+        # TODO: This widget was originally created for pre-Django 1.11
+        # style widgets, so it's doing its own rendering. We should
+        # probably modify it to use a passed-in renderer, or whatever
+        # the proper Django 1.11 way of doing things is.
+
         return render_to_string('uswds_forms/date.html', {
             'hint_id': '%s_%s' % (id_, 'hint'),
             'year': year,
