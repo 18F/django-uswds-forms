@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'uswds-1.1.0/css/uswds.css' %}">
 <style>
 body {
-  padding: 0 1em;
+  padding: 0 4em;
 }
 </style>
 <title>django-uswds-forms example</title>
@@ -20,4 +20,7 @@ body {
   {% fieldset form.states %}
   {% fieldset form.date %}
   <button type="submit">Submit</button>
+  <button type="submit" class="usa-button-secondary" formnovalidate>
+    Submit without HTML5 form validation
+  </button>
 </form>

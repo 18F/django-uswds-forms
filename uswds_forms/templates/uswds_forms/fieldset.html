@@ -1,6 +1,4 @@
-<fieldset>
-  <!-- TODO: Original CALC code added .fieldset-error to the
-       <fieldset> if the field had errors, but that wasn't a uswds thing. -->
+<fieldset {% if field.errors %}class="usa-input-error"{% endif %}>
   {{ field.errors }}
   {% if use_legend %}
     <legend>{{ field.label }}</legend>
