@@ -26,5 +26,7 @@ def fieldset(context, field):
 
     return t.render(template.Context({
         'field': field,
+        'put_field_before_label': isinstance(field.field.widget,
+                                             forms.CheckboxInput),
         'use_legend': isinstance(field.field.widget, LEGEND_WIDGETS)
     }))

@@ -19,5 +19,6 @@ class UswdsRadioSelect(UswdsWidgetMixin, forms.widgets.RadioSelect):
     pass
 
 
-class UswdsCheckbox(UswdsWidgetMixin, forms.widgets.CheckboxSelectMultiple):
+class UswdsCheckboxSelectMultiple(UswdsWidgetMixin,
+                                  forms.widgets.CheckboxSelectMultiple):
     pass
