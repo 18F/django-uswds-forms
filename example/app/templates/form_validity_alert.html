@@ -1,0 +1,25 @@
+{% if form.is_bound %}
+  {% if form.is_valid %}
+    <div class="usa-alert usa-alert-success">
+      <div class="usa-alert-body">
+        <h3 class="usa-alert-heading">Submission successful!</h3>
+        <p class="usa-alert-text">You successfully submitted the form and it's valid.</p>
+        <ul class="usa-alert-text">
+          <li>Your favorite president is <strong>{{ form.cleaned_data.president|capfirst }}</strong>.</li>
+          <li>You want to name the next national park <strong>{{ form.cleaned_data.park|title }}</strong>.</li>
+          {% if form.cleaned_data.states %}
+          <li>You have visited <strong>{{ form.cleaned_data.states|join:", " }}</strong>.</li>
+          {% endif %}
+          <li>Your favorite date is <strong>{{ form.cleaned_data.date }}</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  {% else %}
+    <div class="usa-alert usa-alert-error" role="alert">
+      <div class="usa-alert-body">
+        <h3 class="usa-alert-heading">Submission unsuccessful.</h3>
+        <p class="usa-alert-text">Alas, your form submission was invalid. See below for more details.</p>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
