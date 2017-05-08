@@ -6,8 +6,6 @@ from django.forms import MultiWidget, NumberInput
 from django.forms.fields import MultiValueField, IntegerField
 from django.template.loader import render_to_string
 
-from .config import USE_NEW_FORM_API
-
 
 FieldNames = namedtuple('FieldNames', ['year', 'month', 'day'])
 
@@ -48,11 +46,7 @@ class SplitDateWidget(MultiWidget):
         if not isinstance(value, list):
             value = self.decompress(value)
 
-        if USE_NEW_FORM_API:
-            final_attrs = self.build_attrs(self.attrs, attrs)
-        else:
-            final_attrs = self.build_attrs(attrs)
-
+        final_attrs = self.build_attrs(self.attrs, attrs)
         id_ = final_attrs.get('id')
         widget_infos = []
         for i, widget in enumerate(self.widgets):
@@ -74,6 +68,11 @@ class SplitDateWidget(MultiWidget):
             })
 
         year, month, day = widget_infos
+
+        # TODO: This widget was originally created for pre-Django 1.11
+        # style widgets, so it's doing its own rendering. We should
+        # probably modify it to use a passed-in renderer, or whatever
+        # the proper Django 1.11 way of doing things is.
 
         return render_to_string('uswds_forms/date.html', {
             'hint_id': '%s_%s' % (id_, 'hint'),
