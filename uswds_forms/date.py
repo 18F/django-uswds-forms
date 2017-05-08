@@ -8,55 +8,6 @@ from django.forms.fields import MultiValueField, IntegerField
 FieldNames = namedtuple('FieldNames', ['year', 'month', 'day'])
 
 
-class ExtraValidationNumberInput(NumberInput):
-    '''
-    NumberInput with extra HTML5 validation attributes.
-    '''
-
-    extra_validation_attrs = {}
-
-    def get_context(self, name, value, attrs):
-        ctx = super().get_context(name, value, attrs)
-        ctx['widget']['attrs'].update(self.extra_validation_attrs)
-        return ctx
-
-
-class MonthInput(ExtraValidationNumberInput):
-    '''
-    NumberInput with extra HTML5 validation attrs for numeric months.
-    '''
-
-    extra_validation_attrs = {
-        'pattern': r'0?[1-9]|1[012]',
-        'min': '1',
-        'max': '12',
-    }
-
-
-class YearInput(ExtraValidationNumberInput):
-    '''
-    NumberInput with extra HTML5 validation attrs for 4-digit years.
-    '''
-
-    extra_validation_attrs = {
-        'pattern': r'[0-9]{4}',
-        'min': '1900',
-        'max': '9999',
-    }
-
-
-class DayInput(ExtraValidationNumberInput):
-    '''
-    NumberInput with extra HTML5 validation attrs for day-of-month.
-    '''
-
-    extra_validation_attrs = {
-        'pattern': r'0?[1-9]|1[0-9]|2[0-9]|3[01]',
-        'min': '1',
-        'max': '31',
-    }
-
-
 class SplitDateWidget(MultiWidget):
     '''
     A widget for a USWDS-style date, with separate number fields for
@@ -68,11 +19,29 @@ class SplitDateWidget(MultiWidget):
 
     template_name = 'uswds_forms/date.html'
 
+    year_attrs = {
+        'pattern': r'[0-9]{4}',
+        'min': '1900',
+        'max': '9999',
+    }
+
+    month_attrs = {
+        'pattern': r'0?[1-9]|1[012]',
+        'min': '1',
+        'max': '12',
+    }
+
+    day_attrs = {
+        'pattern': r'0?[1-9]|1[0-9]|2[0-9]|3[01]',
+        'min': '1',
+        'max': '31',
+    }
+
     def __init__(self, attrs=None):
         widgets = (
-            YearInput(attrs=attrs),
-            MonthInput(attrs=attrs),
-            DayInput(attrs=attrs),
+            NumberInput(attrs=self.year_attrs),
+            NumberInput(attrs=self.month_attrs),
+            NumberInput(attrs=self.day_attrs),
         )
         super().__init__(widgets, attrs=attrs)
 
