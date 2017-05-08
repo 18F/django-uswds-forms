@@ -5,10 +5,10 @@ from uswds_forms.radio_and_checkbox import (
     UswdsCheckboxSelectMultiple
 )
 from uswds_forms.date import SplitDateField
-from uswds_forms.errors import UswdsErrorList
+from uswds_forms.form import UswdsForm
 
 
-class ExampleForm(forms.Form):
+class ExampleForm(UswdsForm):
     required_css_class = 'usa-input-required'
 
     president = forms.ChoiceField(
@@ -50,16 +50,12 @@ class ExampleForm(forms.Form):
 
 
 def home(request):
-    form_kwargs = dict(
-        error_class=UswdsErrorList
-    )
-
     if request.method == 'POST':
-        form = ExampleForm(request.POST, **form_kwargs)
+        form = ExampleForm(request.POST)
         if form.data.get('trigger_non_field_error'):
             form.add_error(None, 'This is the non-field error you requested.')
     else:
-        form = ExampleForm(**form_kwargs)
+        form = ExampleForm()
 
     return render(request, 'home.html', {
         'form': form
