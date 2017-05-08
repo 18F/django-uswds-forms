@@ -18,7 +18,7 @@ setup(name='django-uswds-forms',
       include_package_data=True,
       packages=find_packages(),
       install_requires=[
-          'django>=1.11,<2',
+          'django>=1.11.1,<2',
       ],
 
       classifiers=[

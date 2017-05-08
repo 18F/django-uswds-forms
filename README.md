@@ -35,7 +35,7 @@ we created this package.
   You'll also need to make sure the USWDS CSS is included in
   whatever pages you want to display your forms on.
 
-* You'll need Django 1.11.
+* You'll need Django 1.11.1 or later.
 
 * Your project needs to use Python 3.
 
