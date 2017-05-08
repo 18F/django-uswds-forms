@@ -9,6 +9,8 @@ from uswds_forms.errors import UswdsErrorList
 
 
 class ExampleForm(forms.Form):
+    required_css_class = 'usa-input-required'
+
     president = forms.ChoiceField(
         label="Who is your favorite president?",
         widget=UswdsRadioSelect,

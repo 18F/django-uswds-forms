@@ -24,9 +24,19 @@ def fieldset(context, field):
 
     t = context.template.engine.get_template('uswds_forms/fieldset.html')
 
+    use_legend = isinstance(field.field.widget, LEGEND_WIDGETS)
+
+    if use_legend:
+        aria_hidden_label_tag = field.label_tag(attrs={
+            'aria-hidden': 'true',
+        })
+    else:
+        aria_hidden_label_tag = None
+
     return t.render(template.Context({
         'field': field,
         'put_field_before_label': isinstance(field.field.widget,
                                              forms.CheckboxInput),
-        'use_legend': isinstance(field.field.widget, LEGEND_WIDGETS)
+        'use_legend': use_legend,
+        'aria_hidden_label_tag': aria_hidden_label_tag,
     }))
