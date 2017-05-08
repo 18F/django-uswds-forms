@@ -4,8 +4,6 @@ from collections import namedtuple
 from django.core.exceptions import ValidationError
 from django.forms import MultiWidget, NumberInput
 from django.forms.fields import MultiValueField, IntegerField
-from django.template.loader import render_to_string
-
 
 FieldNames = namedtuple('FieldNames', ['year', 'month', 'day'])
 
@@ -18,6 +16,8 @@ class SplitDateWidget(MultiWidget):
     The widget is expected to be in a <fieldset>. Instead of a <label>,
     the label should be rendered inside a <legend>.
     '''
+
+    template_name = 'uswds_forms/date.html'
 
     def __init__(self, attrs=None):
         widgets = (
@@ -36,7 +36,7 @@ class SplitDateWidget(MultiWidget):
     def get_field_names(name):
         return FieldNames(year=name + '_0', month=name + '_1', day=name + '_2')
 
-    def render(self, name, value, attrs=None):
+    def get_context(self, name, value, attrs):
         # Django MultiWidget rendering is not particularly well-suited to
         # what we want to do, so we'll have to override it here. Much
         # of this code is copied from MultiWidget.render(), unfortunately.
@@ -69,17 +69,12 @@ class SplitDateWidget(MultiWidget):
 
         year, month, day = widget_infos
 
-        # TODO: This widget was originally created for pre-Django 1.11
-        # style widgets, so it's doing its own rendering. We should
-        # probably modify it to use a passed-in renderer, or whatever
-        # the proper Django 1.11 way of doing things is.
-
-        return render_to_string('uswds_forms/date.html', {
+        return {
             'hint_id': '%s_%s' % (id_, 'hint'),
             'year': year,
             'month': month,
             'day': day,
-        })
+        }
 
 
 class SplitDateField(MultiValueField):
