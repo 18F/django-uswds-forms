@@ -10,6 +10,7 @@ Welcome to django-uswds-forms's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   introduction
    developing
 
 This is just a sample to make sure we can document classes and
