@@ -1,3 +1,4 @@
+import os
 from setuptools import setup, find_packages
 import distutils.cmd
 import subprocess
@@ -20,7 +21,8 @@ class DevDocsCommand(SimpleCommand):
 
     def run(self):
         subprocess.check_call(
-            ['sphinx-autobuild', '.', '_build/html', '-p', '8001'],
+            ['sphinx-autobuild', '.', '_build/html', '-p', '8001',
+             '-z', os.path.join('..', 'uswds_forms')],
             cwd='docs'
         )
 
