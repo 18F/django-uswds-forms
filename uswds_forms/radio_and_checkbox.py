@@ -1,6 +1,12 @@
 from django import forms
 
 
+__all__ = (
+    'UswdsRadioSelect',
+    'UswdsCheckboxSelectMultiple',
+)
+
+
 class UswdsWidgetMixin:
     option_template_name = 'uswds_forms/input_option.html'
 

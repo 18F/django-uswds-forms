@@ -4,6 +4,11 @@ from django.template.loader import render_to_string
 from .errors import UswdsErrorList
 
 
+__all__ = (
+    'UswdsForm',
+)
+
+
 class UswdsForm(forms.Form):
     def __init__(self, *args, **kwargs):
         if 'error_class' not in kwargs:

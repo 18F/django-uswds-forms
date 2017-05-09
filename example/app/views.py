@@ -1,19 +1,14 @@
 from django.shortcuts import render
 from django import forms
-from uswds_forms.radio_and_checkbox import (
-    UswdsRadioSelect,
-    UswdsCheckboxSelectMultiple
-)
-from uswds_forms.date import SplitDateField
-from uswds_forms.form import UswdsForm
+import uswds_forms
 
 
-class ExampleForm(UswdsForm):
+class ExampleForm(uswds_forms.UswdsForm):
     required_css_class = 'usa-input-required'
 
     president = forms.ChoiceField(
         label="Who is your favorite president?",
-        widget=UswdsRadioSelect,
+        widget=uswds_forms.UswdsRadioSelect,
         help_text=("If you don't see your favorite, just pick your "
                    "favorite of the ones we've listed."),
         choices=(
@@ -31,7 +26,7 @@ class ExampleForm(UswdsForm):
 
     states = forms.MultipleChoiceField(
         label="What states have you visited?",
-        widget=UswdsCheckboxSelectMultiple,
+        widget=uswds_forms.UswdsCheckboxSelectMultiple,
         required=False,
         choices=(
             ('OH', 'Ohio'),
@@ -40,7 +35,7 @@ class ExampleForm(UswdsForm):
         )
     )
 
-    date = SplitDateField(label="What is your favorite date?")
+    date = uswds_forms.SplitDateField(label="What is your favorite date?")
 
     trigger_non_field_error = forms.BooleanField(
         label=("After submitting this form, trigger a "

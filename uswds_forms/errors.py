@@ -2,6 +2,11 @@ from django.forms.utils import ErrorList
 from django.template.loader import render_to_string
 
 
+__all__ = (
+    'UswdsErrorList',
+)
+
+
 class UswdsErrorList(ErrorList):
     def __str__(self):
         return self.as_html()
