@@ -1,29 +1,11 @@
-import os
 from setuptools import setup, find_packages
 
-MY_DIR = os.path.abspath(os.path.dirname(__file__))
-
-
-def get_version():
-    '''
-    Get the version number. It's in our package's __init__.py, but
-    we don't want to import it directly b/c this will bring in
-    a bunch of other dependencies that might not be on the user's
-    system, so we need to be a bit hacky here.
-    '''
-
-    for line in open(os.path.join(MY_DIR, 'uswds_forms', '__init__.py')):
-        if line.startswith('VERSION'):
-            globs = {}
-            exec(line, globs)
-            return globs['VERSION']
-
-    raise Exception('VERSION not found!')
+import metadata
 
 
 setup(name='django-uswds-forms',
       zip_safe=False,
-      version=get_version(),
+      version=metadata.get_version(),
       description='Django Forms integration with the U.S. Web Design Standards',
 
       # TODO: Add long_description.
