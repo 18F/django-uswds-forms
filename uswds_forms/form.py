@@ -10,6 +10,14 @@ __all__ = (
 
 
 class UswdsForm(forms.Form):
+    '''
+    This is a subclass of :class:`django.forms.Form` that provides
+    some functionality for rendering USWDS forms.
+
+    By default, it will use :class:`uswds_forms.UswdsErrorList` to
+    display errors.
+    '''
+
     def __init__(self, *args, **kwargs):
         if 'error_class' not in kwargs:
             kwargs['error_class'] = UswdsErrorList
@@ -17,7 +25,9 @@ class UswdsForm(forms.Form):
 
     def as_fieldsets(self):
         '''
-        TODO: Document this.
+        Like other convenience methods such as ``as_p()`` and
+        ``as_table()``, this method renders all the form's fields as
+        a series of ``<fieldset>`` elements.
         '''
 
         return render_to_string('uswds_forms/form_as_fieldsets.html', {

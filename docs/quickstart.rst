@@ -31,3 +31,10 @@ Add ``uswds_forms`` to your ``INSTALLED_APPS`` setting, e.g.:
        'uswds_forms',
        # ...
    )
+
+Getting started
+~~~~~~~~~~~~~~~
+
+We still need to write this part, but if you're eager to get going,
+check out the `example app <https://github.com/18F/django-uswds-forms/tree/master/example>`_ included with the project. You can also take a
+look at the :doc:`reference`.

@@ -6,21 +6,16 @@
 Welcome to django-uswds-forms's documentation!
 ==============================================
 
+Welcome to the `django-uswds-forms <https://github.com/18F/django-uswds-forms>`_ documentation!
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    introduction
    quickstart
+   reference
    developing
-
-This is just a sample to make sure we can document classes and
-methods OK.
-
-.. currentmodule:: uswds_forms
-
-.. autoclass:: UswdsForm
-   :members: as_fieldsets
 
 Indices and tables
 ==================

@@ -1,6 +1,12 @@
 Developing django-uswds-forms
 =============================
 
+.. important::
+
+    This section is about developing django-uswds-forms
+    itself, not using it in your Django project. For
+    details on the latter, see the :doc:`quickstart`.
+
 .. highlight:: none
 
 First, clone the git repository::
