@@ -10,7 +10,13 @@ Welcome to django-uswds-forms's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+This is just a sample to make sure we can document classes and
+methods OK.
 
+.. currentmodule:: uswds_forms
+
+.. autoclass:: UswdsForm
+   :members: as_fieldsets
 
 Indices and tables
 ==================

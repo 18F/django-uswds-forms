@@ -16,6 +16,10 @@ class UswdsForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def as_fieldsets(self):
+        '''
+        TODO: Document this.
+        '''
+
         return render_to_string('uswds_forms/form_as_fieldsets.html', {
             'form': self,
         })

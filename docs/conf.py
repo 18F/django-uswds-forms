@@ -58,8 +58,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'django-uswds-forms'
-copyright = '2017, Atul Varma'
-author = 'Atul Varma'
+copyright = '2017, 18F'
+author = '18F'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -147,7 +147,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'django-uswds-forms.tex', 'django-uswds-forms Documentation',
-     'Atul Varma', 'manual'),
+     '18F', 'manual'),
 ]
 
 
