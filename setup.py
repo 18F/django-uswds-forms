@@ -1,9 +1,34 @@
 from setuptools import setup, find_packages
+import distutils.cmd
+import subprocess
 
 import metadata
 
 
+class SimpleCommand(distutils.cmd.Command):
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+
+class DevDocsCommand(SimpleCommand):
+    description = "Run development server for documentation"
+
+    def run(self):
+        subprocess.check_call(
+            ['sphinx-autobuild', '.', '_build/html', '-p', '8001'],
+            cwd='docs'
+        )
+
+
 setup(name='django-uswds-forms',
+      cmdclass={
+          'devdocs': DevDocsCommand,
+      },
       zip_safe=False,
       version=metadata.get_version(),
       description='Django Forms integration with the U.S. Web Design Standards',

@@ -69,6 +69,12 @@ cd example
 python manage.py runserver
 ```
 
+Or, to work on the documentation, run:
+
+```
+python setup.py devdocs
+```
+
 [django-designstandards]: https://github.com/department-of-veterans-affairs/django-designstandards
 [uswds]: https://standards.usa.gov/
 [django-forms]: https://docs.djangoproject.com/en/1.11/topics/forms/#the-django-form-class
