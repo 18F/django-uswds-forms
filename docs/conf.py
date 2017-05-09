@@ -175,7 +175,7 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'django': ('https://docs.djangoproject.com/en/1.10/',
-               'https://docs.djangoproject.com/en/1.10/_objects/'),
+    'django': ('https://docs.djangoproject.com/en/1.11/',
+               'https://docs.djangoproject.com/en/1.11/_objects/'),
     'python': ('https://docs.python.org/3.5', None),
 }
