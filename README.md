@@ -48,6 +48,7 @@ For now, to develop on the package itself, you can run:
 ```
 virtualenv -p python3 venv
 source venv/bin/activate
+pip install -r requirements-dev.txt
 ```
 
 At this point you may want to use `pip` to install a specific version
