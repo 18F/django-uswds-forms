@@ -5,6 +5,9 @@ The `U.S. Web Design Standards <https://standards.usa.gov/>`_ are awesome, but t
 few barriers that make it difficult to use with 
 :class:`django.forms.Form`. For example:
 
+* The CSS classes used by Django's default renderer for things like
+  errors and help text are not the same as those used by USWDS.
+
 * Individual checkboxes and radio buttons have different HTML
   markup than that rendered by Django forms.
 

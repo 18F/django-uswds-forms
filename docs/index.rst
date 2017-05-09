@@ -11,6 +11,7 @@ Welcome to django-uswds-forms's documentation!
    :caption: Contents:
 
    introduction
+   quickstart
    developing
 
 This is just a sample to make sure we can document classes and
