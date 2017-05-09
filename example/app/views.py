@@ -24,9 +24,8 @@ class ExampleForm(uswds_forms.UswdsForm):
         help_text='Note that "Parky McParkface" is not a valid response.'
     )
 
-    states = forms.MultipleChoiceField(
+    states = uswds_forms.UswdsMultipleChoiceField(
         label="What states have you visited?",
-        widget=uswds_forms.UswdsCheckboxSelectMultiple,
         required=False,
         choices=(
             ('OH', 'Ohio'),

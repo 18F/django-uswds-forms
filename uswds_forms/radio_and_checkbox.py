@@ -4,6 +4,7 @@ from django import forms
 __all__ = (
     'UswdsRadioSelect',
     'UswdsCheckboxSelectMultiple',
+    'UswdsMultipleChoiceField',
 )
 
 
@@ -28,3 +29,15 @@ class UswdsRadioSelect(UswdsWidgetMixin, forms.widgets.RadioSelect):
 class UswdsCheckboxSelectMultiple(UswdsWidgetMixin,
                                   forms.widgets.CheckboxSelectMultiple):
     pass
+
+
+class UswdsMultipleChoiceField(forms.fields.MultipleChoiceField):
+    '''
+    This is just a Django `MultipleChoiceField` with the
+    `UswdsCheckboxSelectMultiple` widget. Easier than having to
+    specify the widget manually, and provided for convenience because
+    the usability of the default `SelectMultiple` is so terrible
+    that you'll never want to use it.
+    '''
+
+    widget = UswdsCheckboxSelectMultiple
