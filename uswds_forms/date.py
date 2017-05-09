@@ -7,14 +7,14 @@ from django.forms.fields import MultiValueField, IntegerField
 
 
 __all__ = (
-    'SplitDateField',
+    'UswdsSplitDateField',
 )
 
 
 FieldNames = namedtuple('FieldNames', ['year', 'month', 'day'])
 
 
-class SplitDateWidget(MultiWidget):
+class UswdsSplitDateWidget(MultiWidget):
     '''
     A widget for a USWDS-style date, with separate number fields for
     date, month, and year.
@@ -82,12 +82,12 @@ class SplitDateWidget(MultiWidget):
         return ctx
 
 
-class SplitDateField(MultiValueField):
+class UswdsSplitDateField(MultiValueField):
     '''
     A field for a USWDS-style date.
     '''
 
-    widget = SplitDateWidget
+    widget = UswdsSplitDateWidget
 
     def __init__(self, *args, **kwargs):
         fields = (

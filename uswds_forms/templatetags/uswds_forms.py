@@ -9,7 +9,7 @@ register = template.Library()
 # like to use a <legend> element with these, instead of a <label>, so
 # that screen-readers contextualize them properly.
 LEGEND_WIDGETS = (
-    date.SplitDateWidget,
+    date.UswdsSplitDateWidget,
     forms.CheckboxSelectMultiple,
     forms.RadioSelect
 )

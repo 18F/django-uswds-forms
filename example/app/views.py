@@ -35,7 +35,9 @@ class ExampleForm(uswds_forms.UswdsForm):
         )
     )
 
-    date = uswds_forms.SplitDateField(label="What is your favorite date?")
+    date = uswds_forms.UswdsSplitDateField(
+        label="What is your favorite date?"
+    )
 
     trigger_non_field_error = forms.BooleanField(
         label=("After submitting this form, trigger a "
