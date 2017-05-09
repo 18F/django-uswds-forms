@@ -35,7 +35,7 @@ class ExampleForm(uswds_forms.UswdsForm):
         )
     )
 
-    date = uswds_forms.UswdsSplitDateField(
+    date = uswds_forms.UswdsDateField(
         label="What is your favorite date?"
     )
 

@@ -1,12 +1,12 @@
 import datetime
 from django import forms
 
-from uswds_forms.date import UswdsSplitDateWidget
+from uswds_forms.date import UswdsDateWidget
 from uswds_forms import UswdsCheckboxSelectMultiple, UswdsRadioSelect
 
 
-def test_split_date_widget_decompress():
-    w = UswdsSplitDateWidget()
+def test_date_widget_decompress():
+    w = UswdsDateWidget()
     d = datetime.date(2017, 5, 4)
     assert w.decompress(d) == [2017, 5, 4]
 
