@@ -1,6 +1,5 @@
-import os
 from pathlib import Path
-from typing import Dict
+from typing import Dict  # NOQA
 
 MY_DIR = Path(__file__).resolve().parent
 
