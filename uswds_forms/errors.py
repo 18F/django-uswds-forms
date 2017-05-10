@@ -14,7 +14,7 @@ class UswdsErrorList(ErrorList):
     practice, see the `USWDS text inputs example
     <https://standards.usa.gov/components/form-controls/#text-input>`_.
 
-    Note that you probably don't need to use this class directly, as 
+    Note that you probably don't need to use this class directly, as
     :class:`~uswds_forms.UswdsForm` uses it by default.
 
     For more details on how to use this class, see the Django
