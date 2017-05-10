@@ -1,2 +1,4 @@
 Django==1.11.1
 git+git://github.com/18F/django-uswds-forms
+gunicorn==19.7.1
+whitenoise==3.3.0
