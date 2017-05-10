@@ -25,9 +25,10 @@ class UswdsForm(forms.Form):
 
     def as_fieldsets(self):
         '''
-        Like other convenience methods such as ``as_p()`` and
-        ``as_table()``, this method renders all the form's fields as
-        a series of ``<fieldset>`` elements.
+        Like other convenience methods such as
+        :py:meth:`~django.forms.Form.as_p` and
+        :py:meth:`~django.forms.Form.as_table`, this method renders all
+        the form's fields as a series of ``<fieldset>`` elements.
         '''
 
         return render_to_string('uswds_forms/form_as_fieldsets.html', {
