@@ -35,6 +35,41 @@ Add ``uswds_forms`` to your ``INSTALLED_APPS`` setting, e.g.:
 Getting started
 ~~~~~~~~~~~~~~~
 
-We still need to write this part, but if you're eager to get going,
-check out the `example app <https://github.com/18F/django-uswds-forms/tree/master/example>`_ included with the project. You can also take a
-look at the :doc:`reference`.
+One way to get started is by visiting the `example app
+<https://github.com/18F/django-uswds-forms/tree/master/example>`_ included
+with the project. Specifically, the following files are particularly
+illuminating:
+
+* `app/views.py <https://github.com/18F/django-uswds-forms/blob/master/example/app/views.py>`_ is a simple view that uses a :class:`uswds_forms.UswdsForm`, along with some of this package's :ref:`fields <formfields>` and :ref:`widgets <widgets>`.
+
+* `app/templates/home.html <https://github.com/18F/django-uswds-forms/blob/master/example/app/templates/home.html>`_ is the template rendered by the view, which uses the :ref:`fieldset template tag <fieldset-template-tag>` for rendering.
+
+Note that, at present, if you want to actually *run* the example app,
+you'll need to see :doc:`developing`.
+
+Guidelines
+~~~~~~~~~~
+
+These guidelines are generally followed by the aforementioned example
+app, so refer to that if you want to see these in action.
+
+* If possible, use the :class:`~uswds_forms.UswdsForm` class for your
+  form. It will make error listings "just work", and its
+  :meth:`~uswds_forms.UswdsForm.as_fieldsets` can get you by in a
+  pinch; for more fine-grained display of form fields, see the
+  :ref:`fieldset template tag <fieldset-template-tag>`.
+
+* In general, Django's :ref:`built-in Field classes <built-in-fields>`
+  should work okay out-of-the-box. The major exceptions to these are
+  radios and checkboxes, which use slightly different markup in
+  USWDS than Django's default, so you'll want to use our
+  specialized :ref:`widgets <widgets>` to replace Django's defaults.
+
+* If you want automatic indication of required fields in the style
+  shown in the `USWDS name form template
+  <https://standards.usa.gov/components/form-templates/#name-form>`_, 
+  you can set the :attr:`~django.forms.Form.required_css_class`
+  attribute on your form to ``'usa-input-required'``.
+
+  (Unfortunately, there isn't currently an easy way to do the inverse
+  of this, where only *optional* fields are called out.)

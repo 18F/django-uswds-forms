@@ -12,6 +12,8 @@ custom template tag set in your templates like so::
 
     {% load uswds_forms %}
 
+.. _fieldset-template-tag:
+
 ``fieldset``
 ------------
 
@@ -38,8 +40,10 @@ Form
 .. autoclass:: UswdsForm()
    :members: as_fieldsets
 
-Fields
-======
+.. _formfields:
+
+Form fields
+===========
 
 These fields use the same :ref:`core field arguments
 <django:core-field-arguments>` as core Django.
@@ -47,6 +51,8 @@ These fields use the same :ref:`core field arguments
 .. autoclass:: UswdsDateField(**kwargs)
 
 .. autoclass:: UswdsMultipleChoiceField(**kwargs)
+
+.. _widgets:
 
 Widgets
 =======

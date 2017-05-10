@@ -30,6 +30,11 @@ class UswdsForm(forms.Form):
         :py:meth:`~django.forms.Form.as_p` and
         :py:meth:`~django.forms.Form.as_table`, this method renders all
         the form's fields as a series of ``<fieldset>`` elements.
+
+        Under the hood, this just iterates over the form's fields and
+        renders them via the
+        :ref:`fieldset template tag <fieldset-template-tag>`, so you
+        can use that if you need more granular control over rendering.
         '''
 
         return render_to_string('uswds_forms/form_as_fieldsets.html', {

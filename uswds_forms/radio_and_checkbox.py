@@ -27,6 +27,10 @@ class UswdsRadioSelect(UswdsWidgetMixin, forms.widgets.RadioSelect):
     This subclass of :class:`django.forms.RadioSelect` styles
     radio buttons appropriately for USWDS.
 
+    You can use this in a :class:`django.forms.ChoiceField` to get a list
+    of radio buttons instead of a ``<select>`` element for your
+    choices.
+
     For an example of how this looks in practice, see the
     `USWDS radio buttons example
     <https://standards.usa.gov/components/form-controls/#radio-buttons>`_.
@@ -38,6 +42,10 @@ class UswdsCheckboxSelectMultiple(UswdsWidgetMixin,
     '''
     This subclass of :class:`django.forms.CheckboxSelectMultiple` styles
     grouped checkboxes appropriately for USWDS.
+
+    You can use this in a :class:`django.forms.MultipleChoiceField` to
+    get a list of checkboxes instead of a ``<select multiple>`` element
+    for your choices.
 
     For an example of how this looks in practice, see the
     `USWDS checkboxes example
