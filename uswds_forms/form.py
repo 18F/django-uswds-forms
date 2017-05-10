@@ -12,7 +12,8 @@ __all__ = (
 class UswdsForm(forms.Form):
     '''
     This is a subclass of :class:`django.forms.Form` that provides
-    some functionality for rendering USWDS forms.
+    some functionality for rendering USWDS forms. Its constructor
+    takes the exact same arguments.
 
     By default, it will use :class:`uswds_forms.UswdsErrorList` to
     display errors.
