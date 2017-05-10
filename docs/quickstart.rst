@@ -19,6 +19,16 @@ Prerequisites
 
 * Your project needs to use Python 3.
 
+Installation
+~~~~~~~~~~~~
+
+.. highlight:: none
+
+This package isn't on PyPI yet, so you'll need to install it directly
+from GitHub for now::
+
+    pip install git+git://github.com/18F/django-uswds-forms
+
 Required settings
 ~~~~~~~~~~~~~~~~~
 
