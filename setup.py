@@ -1,29 +1,38 @@
 import os
 from setuptools import setup, find_packages
+import distutils.cmd
+import subprocess
 
-MY_DIR = os.path.abspath(os.path.dirname(__file__))
+import metadata
 
 
-def get_version():
-    '''
-    Get the version number. It's in our package's __init__.py, but
-    we don't want to import it directly b/c this will bring in
-    a bunch of other dependencies that might not be on the user's
-    system, so we need to be a bit hacky here.
-    '''
+class SimpleCommand(distutils.cmd.Command):
+    user_options = []
 
-    for line in open(os.path.join(MY_DIR, 'uswds_forms', '__init__.py')):
-        if line.startswith('VERSION'):
-            globs = {}
-            exec(line, globs)
-            return globs['VERSION']
+    def initialize_options(self):
+        pass
 
-    raise Exception('VERSION not found!')
+    def finalize_options(self):
+        pass
+
+
+class DevDocsCommand(SimpleCommand):
+    description = "Run development server for documentation"
+
+    def run(self):
+        subprocess.check_call(
+            ['sphinx-autobuild', '.', '_build/html', '-p', '8001',
+             '-z', os.path.join('..', 'uswds_forms')],
+            cwd='docs'
+        )
 
 
 setup(name='django-uswds-forms',
+      cmdclass={
+          'devdocs': DevDocsCommand,
+      },
       zip_safe=False,
-      version=get_version(),
+      version=metadata.get_version(),
       description='Django Forms integration with the U.S. Web Design Standards',
 
       # TODO: Add long_description.

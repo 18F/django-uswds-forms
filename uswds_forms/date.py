@@ -84,7 +84,12 @@ class UswdsDateWidget(MultiWidget):
 
 class UswdsDateField(MultiValueField):
     '''
-    A field for a USWDS-style date.
+    A field for a USWDS-style date. Its value normalizes to a Python
+    :class:`datetime.date` object.
+
+    For an example of how this looks in practice, see the
+    `USWDS date input example
+    <https://standards.usa.gov/components/form-controls/#date-input>`_.
     '''
 
     widget = UswdsDateWidget

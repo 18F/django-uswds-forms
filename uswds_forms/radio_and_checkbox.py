@@ -23,21 +23,45 @@ class UswdsWidgetMixin:
 
 
 class UswdsRadioSelect(UswdsWidgetMixin, forms.widgets.RadioSelect):
-    pass
+    '''
+    This subclass of :class:`django.forms.RadioSelect` styles
+    radio buttons appropriately for USWDS.
+
+    You can use this in a :class:`django.forms.ChoiceField` to get a list
+    of radio buttons instead of a ``<select>`` element for your
+    choices.
+
+    For an example of how this looks in practice, see the
+    `USWDS radio buttons example
+    <https://standards.usa.gov/components/form-controls/#radio-buttons>`_.
+    '''
 
 
 class UswdsCheckboxSelectMultiple(UswdsWidgetMixin,
                                   forms.widgets.CheckboxSelectMultiple):
-    pass
+    '''
+    This subclass of :class:`django.forms.CheckboxSelectMultiple` styles
+    grouped checkboxes appropriately for USWDS.
+
+    You can use this in a :class:`django.forms.MultipleChoiceField` to
+    get a list of checkboxes instead of a ``<select multiple>`` element
+    for your choices.
+
+    For an example of how this looks in practice, see the
+    `USWDS checkboxes example
+    <https://standards.usa.gov/components/form-controls/#checkboxes>`_.
+    '''
 
 
 class UswdsMultipleChoiceField(forms.fields.MultipleChoiceField):
     '''
-    This is just a Django `MultipleChoiceField` with the
-    `UswdsCheckboxSelectMultiple` widget. Easier than having to
-    specify the widget manually, and provided for convenience because
-    the usability of the default `SelectMultiple` is so terrible
-    that you'll never want to use it.
+    This is just a :class:`django.forms.MultipleChoiceField`
+    that uses the :class:`~uswds_forms.UswdsCheckboxSelectMultiple` widget.
+
+    We've provided this field for convenience because
+    the usability of the default :class:`django.forms.SelectMultiple`
+    is so terrible that you'll probably never want to use it. `Burn
+    your select tags! <https://www.youtube.com/watch?v=CUkMCQR4TpY>`_
     '''
 
     widget = UswdsCheckboxSelectMultiple
