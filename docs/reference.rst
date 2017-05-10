@@ -35,24 +35,27 @@ Sample usage::
 Form
 ====
 
-.. autoclass:: UswdsForm
+.. autoclass:: UswdsForm()
    :members: as_fieldsets
 
 Fields
 ======
 
-.. autoclass:: UswdsDateField
+These fields use the same :ref:`core field arguments
+<django:core-field-arguments>` as core Django.
 
-.. autoclass:: UswdsMultipleChoiceField
+.. autoclass:: UswdsDateField(**kwargs)
+
+.. autoclass:: UswdsMultipleChoiceField(**kwargs)
 
 Widgets
 =======
 
-.. autoclass:: UswdsCheckboxSelectMultiple
+.. autoclass:: UswdsCheckboxSelectMultiple()
 
-.. autoclass:: UswdsRadioSelect
+.. autoclass:: UswdsRadioSelect()
 
 Other utilities
 ===============
 
-.. autoclass:: UswdsErrorList
+.. autoclass:: UswdsErrorList()
