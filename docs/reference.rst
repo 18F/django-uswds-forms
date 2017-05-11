@@ -59,6 +59,9 @@ Widgets
 
 .. autoclass:: UswdsCheckboxSelectMultiple()
 
+.. autoclass:: UswdsDateWidget()
+   :members: template_name, get_context
+
 .. autoclass:: UswdsRadioSelect()
 
 Other utilities

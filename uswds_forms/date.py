@@ -8,6 +8,7 @@ from django.forms.fields import MultiValueField, IntegerField
 
 __all__ = (
     'UswdsDateField',
+    'UswdsDateWidget',
 )
 
 
@@ -25,13 +26,17 @@ DateTuple = namedtuple('DateTuple', FIELD_ORDERING)
 
 class UswdsDateWidget(MultiWidget):
     '''
-    A widget for a USWDS-style date, with separate number fields for
-    date, month, and year.
+    A :class:`django.forms.MultiWidget` for a USWDS-style date, with
+    separate number fields for date, month, and year.
 
-    The widget is expected to be in a <fieldset>. Instead of a <label>,
-    the label should be rendered inside a <legend>.
+    This widget is used automatically by
+    :class:`uswds_forms.UswdsDateField`, so you probably won't need
+    to use it directly. However, it can be subclassed in case you need
+    to customize it.
     '''
 
+    #: This is the default template used by the widget, which can
+    #: be overridden if needed.
     template_name = 'uswds_forms/date.html'
 
     year_attrs = {
@@ -81,6 +86,22 @@ class UswdsDateWidget(MultiWidget):
         )
 
     def get_context(self, name, value, attrs):
+        '''
+        Returns the context for the widget's template. This returns
+        a superset of what's provided by its superclass'
+        :meth:`~django.forms.MultiWidget.get_context`
+        implementation, adding the following keys to ``widget``:
+
+        * ``'hint_id'``: The unique id of some hint text showing users
+          an example of what they can enter.
+
+        * ``'subwidgets'``: This has the same iterable value described
+          in the superclass documentation, but it has been enhanced
+          such that its ``year``, ``month``, and ``day`` properties are
+          aliases to its entries. Using these aliases can potentially make
+          templates more readable.
+        '''
+
         ctx = super().get_context(name, value, attrs)
         widget = ctx['widget']
         hint_id = '%s_%s' % (widget['attrs']['id'], 'hint')
@@ -96,8 +117,8 @@ class UswdsDateWidget(MultiWidget):
 
 class UswdsDateField(MultiValueField):
     '''
-    A field for a USWDS-style date. Its value normalizes to a Python
-    :class:`datetime.date` object.
+    A :class:`django.forms.MultiValueField` for a USWDS-style date.
+    Its value normalizes to a Python :class:`datetime.date` object.
 
     For an example of how this looks in practice, see the
     `USWDS date input example
