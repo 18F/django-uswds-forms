@@ -6,6 +6,12 @@ from uswds_forms.date import UswdsDateWidget, UswdsDateField
 
 
 class DateWidgetTests(SimpleTestCase):
+    def test_get_field_names_works(self):
+        names = UswdsDateWidget.get_field_names('boop')
+        self.assertEqual(names.year, 'boop_0')
+        self.assertEqual(names.month, 'boop_1')
+        self.assertEqual(names.day, 'boop_2')
+
     def test_render_assigns_ids_and_labels(self):
         widget = UswdsDateWidget()
         content = widget.render('boop', None, {'id': 'blarg'})
