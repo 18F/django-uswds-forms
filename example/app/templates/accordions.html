@@ -1,0 +1,24 @@
+{% load show_source %}
+
+<ul class="usa-accordion-bordered">
+  <li>
+    <button class="usa-accordion-button"
+     aria-hidden="true"
+     aria-controls="python">
+     Python code
+    </button>
+    <div id="python" class="usa-accordion-content">
+      <pre>{% show_python_source "views.py" %}</pre>
+    </div>
+  </li>
+  <li>
+    <button class="usa-accordion-button"
+     aria-hidden="true"
+     aria-controls="django-html">
+     Django HTML template code
+    </button>
+    <div id="django-html" class="usa-accordion-content">
+      <pre>{% show_template_source "home.html" %}</pre>
+    </div>
+  </li>
+</ul>
