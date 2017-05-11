@@ -1,15 +1,7 @@
-import datetime
 from django.test import SimpleTestCase
 from django import forms
 
-from uswds_forms.date import UswdsDateWidget
 from uswds_forms import UswdsCheckboxSelectMultiple, UswdsRadioSelect
-
-
-def test_date_widget_decompress():
-    w = UswdsDateWidget()
-    d = datetime.date(2017, 5, 4)
-    assert w.decompress(d) == [2017, 5, 4]
 
 
 def test_checkbox_select_multiple_uses_unstyled_list():
