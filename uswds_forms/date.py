@@ -11,7 +11,16 @@ __all__ = (
 )
 
 
-FieldNames = namedtuple('FieldNames', ['year', 'month', 'day'])
+FIELD_ORDERING = ('year', 'month', 'day')
+YEAR_ID        = FIELD_ORDERING.index('year')
+MONTH_ID       = FIELD_ORDERING.index('month')
+DAY_ID         = FIELD_ORDERING.index('day')
+
+
+# This is just a convenience that allows us to reference the
+# fields without having to remember what index they are in the
+# tuple ordering.
+DateTuple = namedtuple('DateTuple', FIELD_ORDERING)
 
 
 class UswdsDateWidget(MultiWidget):
@@ -44,16 +53,20 @@ class UswdsDateWidget(MultiWidget):
     }
 
     def __init__(self, attrs=None):
-        widgets = (
-            NumberInput(attrs=self.year_attrs),
-            NumberInput(attrs=self.month_attrs),
-            NumberInput(attrs=self.day_attrs),
+        widgets = DateTuple(
+            year=NumberInput(attrs=self.year_attrs),
+            month=NumberInput(attrs=self.month_attrs),
+            day=NumberInput(attrs=self.day_attrs),
         )
         super().__init__(widgets, attrs=attrs)
 
     def decompress(self, value):
         if value:
-            return [value.year, value.month, value.day]
+            return list(DateTuple(
+                year=value.year,
+                month=value.month,
+                day=value.day
+            ))
         return [None, None, None]
 
     @staticmethod
@@ -61,7 +74,11 @@ class UswdsDateWidget(MultiWidget):
         # Note that this is actually dependent on the way our superclass
         # names our subwidgets. The naming scheme should be pretty stable,
         # though.
-        return FieldNames(year=name + '_0', month=name + '_1', day=name + '_2')
+        return DateTuple(
+            year=name + '_{}'.format(YEAR_ID),
+            month=name + '_{}'.format(MONTH_ID),
+            day=name + '_{}'.format(DAY_ID)
+        )
 
     def get_context(self, name, value, attrs):
         ctx = super().get_context(name, value, attrs)
@@ -72,13 +89,8 @@ class UswdsDateWidget(MultiWidget):
                 'class': 'usa-input-inline',
                 'aria-describedby': hint_id,
             })
-        year, month, day = widget['subwidgets']
-        ctx['widget'].update(dict(
-            hint_id=hint_id,
-            year=year,
-            month=month,
-            day=day
-        ))
+        widget['subwidgets'] = DateTuple(*widget['subwidgets'])
+        widget.update({'hint_id': hint_id})
         return ctx
 
 
@@ -95,18 +107,22 @@ class UswdsDateField(MultiValueField):
     widget = UswdsDateWidget
 
     def __init__(self, *args, **kwargs):
-        fields = (
-            IntegerField(),
-            IntegerField(),
-            IntegerField(),
+        fields = DateTuple(
+            year=IntegerField(),
+            month=IntegerField(),
+            day=IntegerField(),
         )
         super().__init__(fields, *args, **kwargs)
 
     def compress(self, data_list):
         if data_list:
-            year, month, day = data_list
+            fields = DateTuple(*data_list)
             try:
-                return date(year, month, day)
+                return date(
+                    year=fields.year,
+                    month=fields.month,
+                    day=fields.day
+                )
             except ValueError as e:
                 raise ValidationError('Invalid date: %s.' % str(e))
         return None

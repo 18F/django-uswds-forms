@@ -2,15 +2,21 @@
 
 <div class="usa-date-of-birth">
   <div class="usa-form-group usa-form-group-month">
-    <label for="{{ widget.month.attrs.id }}">Month</label>
-    {% include widget.month.template_name with widget=widget.month %}
+  {% with widget=widget.subwidgets.month %}
+    <label for="{{ widget.attrs.id }}">Month</label>
+    {% include widget.template_name %}
+  {% endwith %}
   </div>
   <div class="usa-form-group usa-form-group-day">
-    <label for="{{ widget.day.attrs.id }}">Day</label>
-    {% include widget.day.template_name with widget=widget.day %}
+  {% with widget=widget.subwidgets.day %}
+    <label for="{{ widget.attrs.id }}">Day</label>
+    {% include widget.template_name %}
+  {% endwith %}
   </div>
   <div class="usa-form-group usa-form-group-year">
-    <label for="{{ widget.year.attrs.id }}">Year</label>
-    {% include widget.year.template_name with widget=widget.year %}
+  {% with widget=widget.subwidgets.year %}
+    <label for="{{ widget.attrs.id }}">Year</label>
+    {% include widget.template_name %}
+  {% endwith %}
   </div>
 </div>
