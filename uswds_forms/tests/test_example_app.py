@@ -5,7 +5,7 @@
     example app and run them itself, but that would require
     ultimately calling django's configuration/setup functions
     twice from the same process, which doesn't work, so we'll just
-    run the example app's test in a subprocess here.
+    run the example app's test suite in a subprocess here.
 '''
 
 import sys
