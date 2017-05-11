@@ -2,4 +2,7 @@ include README.md
 include LICENSE.md
 include metadata.py
 recursive-include docs *
+prune docs/_build
+recursive-include example *
+prune example/venv
 recursive-include uswds_forms/templates *
