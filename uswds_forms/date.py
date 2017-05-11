@@ -12,9 +12,9 @@ __all__ = (
 
 
 FIELD_ORDERING = ('year', 'month', 'day')
-YEAR_ID        = FIELD_ORDERING.index('year')
-MONTH_ID       = FIELD_ORDERING.index('month')
-DAY_ID         = FIELD_ORDERING.index('day')
+YEAR_ID = FIELD_ORDERING.index('year')
+MONTH_ID = FIELD_ORDERING.index('month')
+DAY_ID = FIELD_ORDERING.index('day')
 
 
 # This is just a convenience that allows us to reference the
