@@ -1,5 +1,4 @@
 import os
-import pytest
 
 
 APP_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -31,7 +30,6 @@ SETTINGS_DICT = {
 }
 
 
-@pytest.fixture(scope="session", autouse=True)
 def init_django():
     # Making Django run this way is a two-step process. First, call
     # settings.configure() to give Django settings to work with:
@@ -42,3 +40,9 @@ def init_django():
     # and other bits:
     import django
     django.setup()
+
+
+# Originally we defined this as a session-scoped fixture, but that
+# broke django.test.SimpleTestCase instances' class setup methods,
+# so we need to call this function *really* early.
+init_django()
