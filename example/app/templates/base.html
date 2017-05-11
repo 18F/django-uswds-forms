@@ -2,16 +2,11 @@
 <meta charset="utf-8">
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'uswds-1.1.0/css/uswds.css' %}">
-<style>
-body {
-  padding: 0 4em;
-}
-</style>
 <title>{% block title %}{% endblock %} - django-uswds-forms</title>
 <body>
   <a class="usa-skipnav" href="#main-content">Skip to main content</a>
   {% include "header.html" %}
-  <main id="main-content">
+  <main class="usa-grid usa-section" id="main-content">
     {% block body %}{% endblock %}
   </main>
   <script src="{% static 'uswds-1.1.0/js/uswds.js' %}"></script>
