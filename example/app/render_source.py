@@ -1,3 +1,4 @@
+import ast
 from pathlib import Path
 from django.utils.safestring import SafeString
 
@@ -28,11 +29,32 @@ def render_source(contents, filetype):
         return SafeString(highlight(contents, lexer, formatter))
 
 
+def clean_python_source(source):
+    '''
+    Remove the leading docstring from the given source code.
+    '''
+
+    mod = ast.parse(source)
+    first_non_docstring = mod.body[1]
+    return '\n'.join(source.splitlines()[first_non_docstring.lineno - 1:])
+
+
+def clean_template_source(source):
+    '''
+    Remove any un-indented {% include %} tags in the given template source.
+    '''
+
+    return '\n'.join(
+        line for line in source.splitlines()
+        if not line.startswith(r'{% include')
+    )
+
+
 def render_template_source(filename):
     with open(str(TEMPLATES_DIR / filename)) as f:
-        return render_source(f.read(), 'html+django')
+        return render_source(clean_template_source(f.read()), 'html+django')
 
 
 def render_python_source(filename):
     with open(str(PY_DIR / filename)) as f:
-        return render_source(f.read(), 'python')
+        return render_source(clean_python_source(f.read()), 'python')
