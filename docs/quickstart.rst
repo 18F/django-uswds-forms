@@ -45,23 +45,19 @@ Add ``uswds_forms`` to your ``INSTALLED_APPS`` setting, e.g.:
 Getting started
 ~~~~~~~~~~~~~~~
 
-One way to get started is by visiting the `example app
-<https://github.com/18F/django-uswds-forms/tree/master/example>`_ included
-with the project. Specifically, the following files are particularly
-illuminating:
+One way to get started is by visiting the `example gallery
+<https://django-uswds-forms.app.cloud.gov/>`_.  It contains a number
+of examples in increasing complexity.  Each example can be tinkered
+with, and you can also easily view its Python and Django template source
+code.
 
-* `app/views.py <https://github.com/18F/django-uswds-forms/blob/master/example/app/views.py>`_ is a simple view that uses a :class:`uswds_forms.UswdsForm`, along with some of this package's :ref:`fields <formfields>` and :ref:`widgets <widgets>`.
-
-* `app/templates/home.html <https://github.com/18F/django-uswds-forms/blob/master/example/app/templates/home.html>`_ is the template rendered by the view, which uses the :ref:`fieldset template tag <fieldset-template-tag>` for rendering.
-
-Note that, at present, if you want to actually *run* the example app,
-you'll need to see :doc:`developing`.
+If you want to run the example gallery locally, see :doc:`developing`.
 
 Guidelines
 ~~~~~~~~~~
 
 These guidelines are generally followed by the aforementioned example
-app, so refer to that if you want to see these in action.
+gallery, so refer to that if you want to see these in action.
 
 * If possible, use the :class:`~uswds_forms.UswdsForm` class for your
   form. It will make error listings "just work", and its
