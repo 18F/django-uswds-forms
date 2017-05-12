@@ -20,9 +20,11 @@
             <span>Examples</span>
           </button>
           <ul id="side-nav-1" class="usa-nav-submenu">
+          {% for ex in EXAMPLES.values %}
             <li>
-              <a href="/">The kitchen sink</a>
+              <a href="/">{{ ex.name }}</a>
             </li>
+          {% endfor %}
           </ul>
         </li>
         <li>
