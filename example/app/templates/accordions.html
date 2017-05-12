@@ -1,5 +1,3 @@
-{% load show_source %}
-
 <ul class="usa-accordion-bordered">
   <li>
     <button class="usa-accordion-button"
@@ -8,7 +6,7 @@
      Python code
     </button>
     <div id="python" class="usa-accordion-content">
-      <pre>{% show_python_source "everything.py" %}</pre>
+      <pre>{{ python_source }}</pre>
     </div>
   </li>
   <li>
@@ -18,7 +16,7 @@
      Django HTML template code
     </button>
     <div id="django-html" class="usa-accordion-content">
-      <pre>{% show_template_source "everything.html" %}</pre>
+      <pre>{{ template_source }}</pre>
     </div>
   </li>
 </ul>

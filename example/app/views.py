@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.utils.safestring import SafeString
 
 from .examples import everything
+from .render_source import render_template_source, render_python_source
 
 
 def home(request):
@@ -13,8 +14,8 @@ def home(request):
     # views is the easiest way to accomplish that.
     html = everything.view(request).content.decode('utf-8')
 
-    rendered_example = SafeString(html)
-
     return render(request, 'home.html', {
-        'rendered_example': rendered_example,
+        'rendered_example': SafeString(html),
+        'template_source': render_template_source('everything.html'),
+        'python_source': render_python_source('everything.py'),
     })
