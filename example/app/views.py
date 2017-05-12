@@ -1,58 +1,35 @@
+from django.http import HttpResponseNotFound
 from django.shortcuts import render
-from django import forms
-import uswds_forms
+from collections import OrderedDict
+
+from .example import Example
+
+EXAMPLE_NAMES = [
+    'radios',
+    'everything',
+]
+
+EXAMPLES = OrderedDict([(name, Example(name)) for name in EXAMPLE_NAMES])
 
 
-class ExampleForm(uswds_forms.UswdsForm):
-    required_css_class = 'usa-input-required'
+def ctx(**kwargs):
+    return {
+        'EXAMPLES': EXAMPLES,
+        **kwargs
+    }
 
-    president = forms.ChoiceField(
-        label="Who is your favorite president?",
-        widget=uswds_forms.UswdsRadioSelect,
-        help_text=("If you don't see your favorite, just pick your "
-                   "favorite of the ones we've listed."),
-        choices=(
-            ('washington', 'George Washington'),
-            ('adams', 'John Adams'),
-            ('jefferson', 'Thomas Jefferson'),
-        )
-    )
 
-    park = forms.CharField(
-        label=("If you could choose the name of the next national park, "
-               "what would it be?"),
-        help_text='Note that "Parky McParkface" is not a valid response.'
-    )
+def example(request, name):
+    example = EXAMPLES.get(name)
 
-    states = uswds_forms.UswdsMultipleChoiceField(
-        label="What states have you visited?",
-        required=False,
-        choices=(
-            ('OH', 'Ohio'),
-            ('IL', 'Illinois'),
-            ('CA', 'California'),
-        )
-    )
+    if example is None:
+        return HttpResponseNotFound('Example not found.')
 
-    date = uswds_forms.UswdsDateField(
-        label="What is your favorite date?"
-    )
-
-    trigger_non_field_error = forms.BooleanField(
-        label=("After submitting this form, trigger a "
-               "non-field error."),
-        required=False,
-    )
+    return render(request, 'example.html', ctx(
+        rendered_example=example.render(request),
+        example=example,
+    ))
 
 
 def home(request):
-    if request.method == 'POST':
-        form = ExampleForm(request.POST)
-        if form.data.get('trigger_non_field_error'):
-            form.add_error(None, 'This is the non-field error you requested.')
-    else:
-        form = ExampleForm()
-
-    return render(request, 'home.html', {
-        'form': form
-    })
+    return render(request, 'home.html', ctx())

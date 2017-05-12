@@ -24,11 +24,12 @@ Then install django-uswds-forms in development mode::
 
     python setup.py develop
 
-Using the example app
-~~~~~~~~~~~~~~~~~~~~~
+Running the example gallery app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-An example Django project provides a simple integration with
-django-uswds-forms and can be used to manually ensure that everything
+An example Django project provides a integration with
+django-uswds-forms by presenting a variety of examples alongside their
+source code. It can be used to manually ensure that everything
 works as expected.
 
 To use it, run the following from the root of the repository::

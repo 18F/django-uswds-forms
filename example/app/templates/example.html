@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ example.name }} example{% endblock %}
+
+{% block body %}
+
+<h1>Example: {{ example.name }}</h1>
+
+<p>{{ example.description }}</p>
+
+{{ rendered_example }}
+
+<ul class="usa-accordion-bordered">
+  <li>
+    <button class="usa-accordion-button"
+     aria-hidden="true"
+     aria-controls="python">
+     Python code
+    </button>
+    <div id="python" class="usa-accordion-content">
+      <pre>{{ example.python_source }}</pre>
+    </div>
+  </li>
+  <li>
+    <button class="usa-accordion-button"
+     aria-hidden="true"
+     aria-controls="django-html">
+     Django HTML template code
+    </button>
+    <div id="django-html" class="usa-accordion-content">
+      <pre>{{ example.template_source }}</pre>
+    </div>
+  </li>
+</ul>
+
+{% endblock %}
