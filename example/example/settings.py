@@ -116,3 +116,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DOCS_URL = "http://django-uswds-forms.readthedocs.io/en/latest/"

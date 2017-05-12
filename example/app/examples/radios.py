@@ -1,7 +1,8 @@
 '''
 Radio buttons
 
-This example shows how to render radio buttons.
+This example shows how to render radio buttons using the
+uswds_forms.UswdsRadioSelect widget.
 '''
 
 from django.shortcuts import render

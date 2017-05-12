@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from collections import OrderedDict
@@ -17,6 +18,7 @@ EXAMPLES = OrderedDict([(name, Example(name)) for name in EXAMPLE_NAMES])
 def ctx(**kwargs):
     return {
         'EXAMPLES': EXAMPLES,
+        'DOCS_URL': settings.DOCS_URL,
         **kwargs
     }
 

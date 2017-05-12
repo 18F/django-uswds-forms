@@ -1,7 +1,8 @@
 '''
 Multiple checkboxes
 
-This example shows how to render groups of checkboxes.
+This example shows how to render groups of checkboxes using
+a uswds_forms.UswdsMultipleChoiceField.
 '''
 
 from django.shortcuts import render

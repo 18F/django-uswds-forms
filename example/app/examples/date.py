@@ -1,7 +1,8 @@
 '''
 Date
 
-This example shows how to render a date input.
+This example shows how to render a date input using a
+uswds_forms.UswdsDateField.
 '''
 
 from django.shortcuts import render
