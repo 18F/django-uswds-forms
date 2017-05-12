@@ -12,16 +12,16 @@ __all__ = (
 )
 
 
-FIELD_ORDERING = ('year', 'month', 'day')
-YEAR_ID = FIELD_ORDERING.index('year')
-MONTH_ID = FIELD_ORDERING.index('month')
-DAY_ID = FIELD_ORDERING.index('day')
-
-
 # This is just a convenience that allows us to reference the
 # fields without having to remember what index they are in the
 # tuple ordering.
-DateTuple = namedtuple('DateTuple', FIELD_ORDERING)
+DateTuple = namedtuple('DateTuple', ['year', 'month', 'day'])
+
+
+FIELD_ORDERING = DateTuple._fields
+YEAR_ID = FIELD_ORDERING.index('year')
+MONTH_ID = FIELD_ORDERING.index('month')
+DAY_ID = FIELD_ORDERING.index('day')
 
 
 class UswdsDateWidget(MultiWidget):

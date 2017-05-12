@@ -12,7 +12,7 @@ class UswdsWidgetMixin:
     option_template_name = 'uswds_forms/input_option.html'
 
     def get_context(self, name, value, attrs):
-        context = super().get_context(name, value, attrs)
+        context = super().get_context(name, value, attrs)  # type: ignore
         widget_attrs = context['widget']['attrs']
         if 'class' not in widget_attrs:
             widget_attrs['class'] = 'usa-unstyled-list'

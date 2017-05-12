@@ -20,6 +20,7 @@
 import os
 import sys
 from pathlib import Path
+from typings import Dict  # NOQA
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,7 +141,7 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
-}
+}  # type: Dict[str, any]
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
