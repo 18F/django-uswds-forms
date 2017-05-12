@@ -22,7 +22,7 @@
           <ul id="side-nav-1" class="usa-nav-submenu">
           {% for ex in EXAMPLES.values %}
             <li>
-              <a href="/">{{ ex.name }}</a>
+              <a href="{{ ex.url }}">{{ ex.name }}</a>
             </li>
           {% endfor %}
           </ul>

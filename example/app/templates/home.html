@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Example form{% endblock %}
+{% block title %}Example gallery{% endblock %}
 
 {% block body %}
 
-<h1>Example: {{ example.name }}</h1>
+<h1>Example gallery</h1>
 
-<p>{{ example.description }}</p>
-
-{{ rendered_example }}
-
-{% include 'accordions.html' %}
+<dl>
+{% for ex in EXAMPLES.values %}
+  <dt><a href="{{ ex.url }}">{{ ex.name }}</a></dt>
+  <dd>{{ ex.description }}</dd>
+{% endfor %}
+</dl>
 
 {% endblock %}

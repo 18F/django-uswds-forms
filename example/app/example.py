@@ -1,5 +1,6 @@
 from django.utils.safestring import SafeString
 from django.utils.module_loading import import_string
+from django.urls import reverse
 
 from .render_source import render_template_source, render_python_source
 
@@ -15,6 +16,10 @@ class Example:
     @property
     def template_source(self):
         return render_template_source(self.basename + '.html')
+
+    @property
+    def url(self):
+        return reverse('example', args=(self.basename,))
 
     def render(self, request):
         # This is sort of weird because we're decoding the
