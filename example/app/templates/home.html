@@ -4,10 +4,9 @@
 
 {% block body %}
 
-<h1>Example: The kitchen sink</h1>
+<h1>Example: {{ example.name }}</h1>
 
-<p>This example combines almost every feature of django-uswds-forms
-into one big form.</p>
+<p>{{ example.description }}</p>
 
 {{ rendered_example }}
 
