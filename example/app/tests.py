@@ -18,25 +18,43 @@ class AppTests(TestCase):
             self.assertEqual(res.status_code, 200)
 
 
-class EverythingExampleTests(TestCase):
-    url = '/example/everything'
+class ExampleMixin:
+    # URL for example. Must be defined by subclasses.
+    url = None
+
+    # Valid POST data for example to succeed. Must be defined by subclasses.
+    valid_post = None
 
     def test_empty_post_shows_errors(self):
         res = self.client.post(self.url, {})
         self.assertContains(res, 'Submission unsuccessful')
+
+    def test_valid_post_shows_success(self):
+        res = self.client.post(self.url, self.valid_post)
+        self.assertContains(res, 'Submission successful')
+
+
+class RadiosExampleTests(ExampleMixin, TestCase):
+    url = '/example/radios'
+
+    valid_post = {
+        'president': 'washington',
+    }
+
+
+class EverythingExampleTests(ExampleMixin, TestCase):
+    url = '/example/everything'
+
+    valid_post = {
+        'president': 'washington',
+        'park': 'foo',
+        'date_1': '4',
+        'date_2': '28',
+        'date_0': '2016',
+    }
 
     def test_non_field_errors_are_displayed(self):
         res = self.client.post(self.url, {
             'trigger_non_field_error': 'on',
         })
         self.assertContains(res, 'This is the non-field error you requested')
-
-    def test_valid_post_shows_success(self):
-        res = self.client.post(self.url, {
-            'president': 'washington',
-            'park': 'foo',
-            'date_1': '4',
-            'date_2': '28',
-            'date_0': '2016',
-        })
-        self.assertContains(res, 'Submission successful')
