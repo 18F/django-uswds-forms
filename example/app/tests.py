@@ -1,4 +1,6 @@
+import abc
 from unittest import SkipTest
+from typing import Dict
 from django.test import TestCase
 
 from .views import EXAMPLES
@@ -34,13 +36,21 @@ class AppTests(TestCase):
             self.assertEqual(res.status_code, 200)
 
 
-class ExampleMixin:
-    # URL for example. Must be defined by subclasses.
-    url = None
+class ExampleMixin(metaclass=abc.ABCMeta):
+    @property
+    @abc.abstractmethod
+    def url(self) -> str:
+        '''
+        URL for example. Must be defined by subclasses.
+        '''
 
-    # Valid POST data for example to succeed. Must be defined by subclasses.
-    # If the form has no required fields, set this to {}.
-    valid_post = None
+    @property
+    @abc.abstractmethod
+    def valid_post(self) -> Dict[str, str]:
+        '''
+        Valid POST data for example to succeed. Must be defined by subclasses.
+        If the form has no required fields, set this to {}.
+        '''
 
     def test_empty_post_shows_errors(self):
         if self.valid_post == {}:
@@ -64,7 +74,7 @@ class RadiosExampleTests(ExampleMixin, TestCase):
 class CheckboxesExampleTests(ExampleMixin, TestCase):
     url = '/example/checkboxes'
 
-    valid_post = {}
+    valid_post = {}  # type: Dict[str, str]
 
 
 class DateExampleTests(ExampleMixin, TestCase):
