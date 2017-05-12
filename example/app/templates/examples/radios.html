@@ -1,0 +1,7 @@
+{% include 'example_form_submission_alert.html' %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_fieldsets }}
+  <button type="submit">Submit</button>
+</form>

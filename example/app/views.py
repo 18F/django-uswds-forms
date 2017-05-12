@@ -5,6 +5,7 @@ from collections import OrderedDict
 from .example import Example
 
 EXAMPLE_NAMES = [
+    'radios',
     'everything',
 ]
 
