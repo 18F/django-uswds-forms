@@ -9,6 +9,7 @@ EXAMPLE_NAMES = [
     'radios',
     'checkboxes',
     'date',
+    'errors',
     'everything',
 ]
 

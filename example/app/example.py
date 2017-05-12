@@ -24,6 +24,11 @@ def add_links_to_docs(text: str) -> str:
             end_text = objname[-1]
             objname = objname[:-1]
         _, short_objname = objname.split('.', 1)
+
+        # Try importing the string, to make sure it's not pointing at
+        # a symbol that doesn't actually exist.
+        import_string(objname)
+
         return '<a href="{}reference.html#{}"><code>{}</code></a>{}'.format(
             settings.DOCS_URL,
             objname,
