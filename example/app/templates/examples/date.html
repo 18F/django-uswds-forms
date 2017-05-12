@@ -4,4 +4,7 @@
   {% csrf_token %}
   {{ form.as_fieldsets }}
   <button type="submit">Submit</button>
+  <button type="submit" class="usa-button-secondary" formnovalidate>
+    Submit without HTML5 form validation
+  </button>
 </form>
