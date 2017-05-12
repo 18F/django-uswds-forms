@@ -7,6 +7,7 @@ from .example import Example
 EXAMPLE_NAMES = [
     'radios',
     'checkboxes',
+    'date',
     'everything',
 ]
 

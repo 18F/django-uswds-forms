@@ -67,6 +67,16 @@ class CheckboxesExampleTests(ExampleMixin, TestCase):
     valid_post = {}
 
 
+class DateExampleTests(ExampleMixin, TestCase):
+    url = '/example/date'
+
+    valid_post = {
+        'date_1': '4',
+        'date_2': '28',
+        'date_0': '2016',
+    }
+
+
 class EverythingExampleTests(ExampleMixin, TestCase):
     url = '/example/everything'
 
