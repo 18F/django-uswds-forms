@@ -6,6 +6,7 @@ from .example import Example
 
 EXAMPLE_NAMES = [
     'radios',
+    'checkboxes',
     'everything',
 ]
 

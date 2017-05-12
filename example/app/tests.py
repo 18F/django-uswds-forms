@@ -1,3 +1,4 @@
+from unittest import SkipTest
 from django.test import TestCase
 
 from .views import EXAMPLES
@@ -38,9 +39,12 @@ class ExampleMixin:
     url = None
 
     # Valid POST data for example to succeed. Must be defined by subclasses.
+    # If the form has no required fields, set this to {}.
     valid_post = None
 
     def test_empty_post_shows_errors(self):
+        if self.valid_post == {}:
+            raise SkipTest('Form has no required fields')
         res = self.client.post(self.url, {})
         self.assertContains(res, 'Submission unsuccessful')
 
@@ -55,6 +59,12 @@ class RadiosExampleTests(ExampleMixin, TestCase):
     valid_post = {
         'president': 'washington',
     }
+
+
+class CheckboxesExampleTests(ExampleMixin, TestCase):
+    url = '/example/checkboxes'
+
+    valid_post = {}
 
 
 class EverythingExampleTests(ExampleMixin, TestCase):
