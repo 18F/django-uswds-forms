@@ -13,6 +13,8 @@ import uswds_forms
 class MyForm(uswds_forms.UswdsForm):
     text = forms.CharField(label="Text input label")
 
+    checkbox = forms.BooleanField(label='I agree to the terms of service')
+
     def clean(self):
         super().clean()
         self.add_error('text', 'Helpful error message #1')
