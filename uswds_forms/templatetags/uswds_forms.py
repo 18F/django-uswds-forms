@@ -1,4 +1,7 @@
 from django import template, forms
+from django.utils.safestring import SafeString
+from django.forms.utils import flatatt
+from django.utils.html import format_html
 from .. import date
 
 
@@ -13,6 +16,32 @@ LEGEND_WIDGETS = (
     forms.CheckboxSelectMultiple,
     forms.RadioSelect
 )
+
+
+def create_aria_hidden_label_tag(field, attrs):
+    '''
+    A <label> for sighted users only.
+
+    Sighted users will see this instead of <legend> for groups of
+    sub-widgets because it's easier to visually style.
+
+    It can't include a 'for' attribute because the attribute will
+    likely be duplicated in the sub-widget grouping, which can
+    confuse browsers because multiple labels for the same id will
+    exist.
+
+    Other than that, much of this code is taken from Django's
+    implementation of BoundField.label_tag().
+    '''
+
+    attrs = {'aria_hidden': 'true', **attrs}
+    if field.field.required and hasattr(field.form, 'required_css_class'):
+        if 'class' in attrs:
+            attrs['class'] += ' ' + field.form.required_css_class
+        else:
+            attrs['class'] = field.form.required_css_class
+    attrs = flatatt(attrs)
+    return SafeString(format_html('<label{}>{}</label>', attrs, field.label))
 
 
 @register.simple_tag(takes_context=True)
@@ -32,10 +61,10 @@ def fieldset(context, field):
         label_attrs['class'] = 'usa-input-error-label'
 
     if use_legend:
-        aria_hidden_label_tag = field.label_tag(attrs={
-            'aria-hidden': 'true',
-            **label_attrs
-        })
+        aria_hidden_label_tag = create_aria_hidden_label_tag(
+            field,
+            label_attrs
+        )
     else:
         aria_hidden_label_tag = None
 
