@@ -48,6 +48,7 @@ class Example:
     def __init__(self, basename):
         self.basename = basename
         self.view = import_string('app.examples.' + basename + '.view')
+        self.module = import_string('app.examples.' + basename)
 
         docstr = import_string('app.examples.' + basename + '.__doc__')
         self.name, description = docstr.split('\n\n', 1)
