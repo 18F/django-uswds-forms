@@ -1,0 +1,20 @@
+<fieldset {% if field.errors %}class="usa-input-error"{% endif %}>
+  {% if put_field_before_label %}
+    {{ field.errors }}
+    {{ field }}
+  {% endif %}
+  {% if use_legend %}
+    {# <legend>s are difficult/impossible to style but are great for screen readers, so we'll make them invisible to sighted users. #}
+    <legend class="usa-sr-only">{{ field.label }}</legend>
+    {{ aria_hidden_label_tag }}
+  {% else %}
+    {{ label_tag }}
+  {% endif %}
+  {% if not put_field_before_label %}
+    {{ field.errors }}
+    {{ field }}
+  {% endif %}
+  {% if field.help_text %}
+    <p class="usa-form-hint">{{ field.help_text }}</p>
+  {% endif %}
+</fieldset>
