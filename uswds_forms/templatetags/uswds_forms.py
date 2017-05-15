@@ -26,12 +26,20 @@ def fieldset(context, field):
 
     use_legend = isinstance(field.field.widget, LEGEND_WIDGETS)
 
+    label_attrs = {}
+
+    if field.errors:
+        label_attrs['class'] = 'usa-input-error-label'
+
     if use_legend:
         aria_hidden_label_tag = field.label_tag(attrs={
             'aria-hidden': 'true',
+            **label_attrs
         })
     else:
         aria_hidden_label_tag = None
+
+    label_tag = field.label_tag(attrs=label_attrs)
 
     return t.render(template.Context({
         'field': field,
@@ -39,4 +47,5 @@ def fieldset(context, field):
                                              forms.CheckboxInput),
         'use_legend': use_legend,
         'aria_hidden_label_tag': aria_hidden_label_tag,
+        'label_tag': label_tag,
     }))

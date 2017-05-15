@@ -6,7 +6,7 @@
     <legend class="usa-sr-only">{{ field.label }}</legend>
     {{ aria_hidden_label_tag }}
   {% else %}
-    {{ field.label_tag }}
+    {{ label_tag }}
   {% endif %}
   {% if not put_field_before_label %}{{ field }}{% endif %}
   {% if field.help_text %}
