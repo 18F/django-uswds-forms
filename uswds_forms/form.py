@@ -13,15 +13,21 @@ class UswdsForm(forms.Form):
     '''
     This is a subclass of :class:`django.forms.Form` that provides
     some functionality for rendering USWDS forms. Its constructor
-    takes the exact same arguments.
+    takes the exact same arguments, but some defaults are
+    changed:
 
-    By default, it will use :class:`uswds_forms.UswdsErrorList` to
-    display errors.
+    * ``error_class`` defaults to :class:`uswds_forms.UswdsErrorList`,
+      so that errors are formatted nicely.
+
+    * :py:attr:`~django.forms.Form.label_suffix` defaults to the
+      empty string, since none of the USWDS example forms have
+      colons after the label names.
     '''
 
     def __init__(self, *args, **kwargs):
         if 'error_class' not in kwargs:
             kwargs['error_class'] = UswdsErrorList
+        kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
 
     def as_fieldsets(self):
