@@ -101,6 +101,8 @@ elif template_engine == 'django':
 else:
     raise ImproperlyConfigured('Invalid TEMPLATE_ENGINE: ' + template_engine)
 
+print("Examples will be rendered using {} templates.".format(template_engine))
+
 WSGI_APPLICATION = 'example.wsgi.application'
 
 
