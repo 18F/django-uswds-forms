@@ -1,5 +1,5 @@
 Django==1.11.1
-git+git://github.com/18F/django-uswds-forms@ebd03acd060c8a9f47653290fe8a2f27f9bc9bce
+--upgrade git+git://github.com/18F/django-uswds-forms
 gunicorn==19.7.1
 whitenoise==3.3.0
 Pygments==2.2.0
