@@ -81,6 +81,10 @@ These fields use the same :ref:`core field arguments
 Widgets
 =======
 
+All of the following widgets work with
+the :class:`~django.forms.renderers.DjangoTemplates` and
+:class:`~django.forms.renderers.Jinja2` form renderers.
+
 .. autoclass:: UswdsCheckboxSelectMultiple()
 
 .. autoclass:: UswdsDateWidget()
