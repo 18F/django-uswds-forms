@@ -66,9 +66,6 @@ class AppTests(TestCase):
                settings.JINJA2_TEMPLATE_BACKEND]
 )
 class TemplateEngineParityTests(TestCase):
-    # TODO: Get rid of this once all examples have been ported.
-    WHITELIST = ['errors', 'checkboxes', 'date', 'radios', 'everything']
-
     def make_renderer(self, engine_name, form_renderer):
         def force_render_using_engine(req, template_name, ctx):
             ctx['form'].renderer = form_renderer
@@ -87,9 +84,6 @@ class TemplateEngineParityTests(TestCase):
         self.maxDiff = 5000
         factory = RequestFactory()
         for ex in EXAMPLES.values():
-            if ex.basename not in self.WHITELIST:
-                continue
-
             django = self.render_example(
                 factory.get('/'),
                 ex,
