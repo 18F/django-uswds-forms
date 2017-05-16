@@ -67,7 +67,7 @@ class AppTests(TestCase):
 )
 class TemplateEngineParityTests(TestCase):
     # TODO: Get rid of this once all examples have been ported.
-    WHITELIST = ['errors', 'checkboxes']
+    WHITELIST = ['errors', 'checkboxes', 'date']
 
     def make_renderer(self, engine_name, form_renderer):
         def force_render_using_engine(req, template_name, ctx):
