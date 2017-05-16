@@ -1,6 +1,6 @@
 from django import template
 
-from ..fieldset import TEMPLATE_NAME, get_context
+from ..fieldset_helper import TEMPLATE_NAME, get_context
 
 register = template.Library()
 

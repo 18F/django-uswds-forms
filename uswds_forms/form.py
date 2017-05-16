@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.safestring import SafeString
 
-from .fieldset import fieldset
+from .fieldset_helper import fieldset
 from .errors import UswdsErrorList
 
 
