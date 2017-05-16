@@ -1,0 +1,26 @@
+{% if form.is_bound %}
+  {% if form.is_valid() %}
+    <div class="usa-alert usa-alert-success">
+      <div class="usa-alert-body">
+        <h3 class="usa-alert-heading">Submission successful!</h3>
+        <p class="usa-alert-text">You successfully submitted the form and it's valid.</p>
+        {% if form.cleaned_data %}
+        <p class="usa-alert-text">Here is the validated data from your submission:</p>
+        <ul class="usa-unstyled-list">
+        {% for key, value in form.cleaned_data.items() %}
+          <li><code><strong>{{ key }}</strong></code> is set to
+            <code>{{ value }}</code>.</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <div class="usa-alert usa-alert-error" role="alert">
+      <div class="usa-alert-body">
+        <h3 class="usa-alert-heading">Submission unsuccessful.</h3>
+        <p class="usa-alert-text">Alas, your form submission was invalid. See below for more details.</p>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
