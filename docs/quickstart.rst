@@ -17,6 +17,15 @@ Prerequisites
 
 * You'll need Django 1.11.1 or later.
 
+* Your project needs to use either Django's default
+  :class:`~django.template.backends.django.DjangoTemplates`
+  or :class:`~django.template.backends.jinja2.Jinja2`
+  template engine.
+
+  In a similar vein, your forms need to use either Django's default
+  :class:`~django.forms.renderers.DjangoTemplates` or
+  :class:`~django.forms.renderers.Jinja2` form renderer.
+
 * Your project needs to use Python 3.
 
 Installation
@@ -41,6 +50,43 @@ Add ``uswds_forms`` to your ``INSTALLED_APPS`` setting, e.g.:
        'uswds_forms',
        # ...
    )
+
+.. _jinja2-setup:
+
+Jinja2 setup (optional)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+If you're using Django's default template backend, you don't need
+to do any extra configuration. However, if you're using the
+:class:`~django.template.backends.jinja2.Jinja2` backend,
+you might want to add some of this package's :ref:`jinja2-functions` to
+your Jinja2 environment.
+
+For example, you can create ``myproject/jinja2.py`` with this content:
+
+.. literalinclude:: ../example/app/jinja2.py
+   :language: python
+
+and in your ``settings.py``, set the ``environment`` option of the
+Jinja2 template engine to point at it, like so:
+
+.. code-block:: python
+
+   TEMPLATES = [
+       # ...
+       {
+           'BACKEND': 'django.template.backends.jinja2.Jinja2',
+           'DIRS': [],
+           'APP_DIRS': True,
+           'OPTIONS': {
+               'environment': 'myproject.jinja2.environment',
+           }
+       },
+       # ...
+   ]
+
+This will allow you to use e.g. the :func:`~uswds_forms.fieldset`
+function from any Jinja2 template.
 
 Getting started
 ~~~~~~~~~~~~~~~

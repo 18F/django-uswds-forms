@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 try:
     import whitenoise
@@ -66,21 +67,41 @@ if whitenoise is not None:
 
 ROOT_URLCONF = 'example.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+DJANGO_TEMPLATE_BACKEND = {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+        ],
     },
-]
+}
+
+JINJA2_TEMPLATE_BACKEND = {
+    'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    'DIRS': [],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'environment': 'app.jinja2.environment',
+    }
+}
+
+template_engine = os.environ.get('TEMPLATE_ENGINE', 'django')
+
+if template_engine == 'jinja2':
+    FORM_RENDERER = 'django.forms.renderers.Jinja2'
+    TEMPLATES = [JINJA2_TEMPLATE_BACKEND, DJANGO_TEMPLATE_BACKEND]
+elif template_engine == 'django':
+    FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
+    TEMPLATES = [DJANGO_TEMPLATE_BACKEND]
+else:
+    raise ImproperlyConfigured('Invalid TEMPLATE_ENGINE: ' + template_engine)
+
+print("Examples will be rendered using {} templates.".format(template_engine))
 
 WSGI_APPLICATION = 'example.wsgi.application'
 

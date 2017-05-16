@@ -1,6 +1,7 @@
 from django import forms
-from django.template.loader import render_to_string
+from django.utils.safestring import SafeString
 
+from .fieldset_helper import fieldset
 from .errors import UswdsErrorList
 
 
@@ -43,6 +44,4 @@ class UswdsForm(forms.Form):
         can use that if you need more granular control over rendering.
         '''
 
-        return render_to_string('uswds_forms/form_as_fieldsets.html', {
-            'form': self,
-        })
+        return SafeString('\n'.join([fieldset(field) for field in self]))

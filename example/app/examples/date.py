@@ -14,6 +14,6 @@ class MyForm(uswds_forms.UswdsForm):
 
 
 def view(request):
-    return render(request, 'examples/radios.html', {
+    return render(request, 'examples/date.html', {
         'form': MyForm() if request.method == 'GET' else MyForm(request.POST)
     })

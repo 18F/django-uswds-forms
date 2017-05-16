@@ -25,7 +25,7 @@ Then install django-uswds-forms in development mode::
     python setup.py develop
 
 Running the example gallery app
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 An example Django project provides a integration with
 django-uswds-forms by presenting a variety of examples alongside their
@@ -40,8 +40,19 @@ To use it, run the following from the root of the repository::
 
 At this point you should be able to visit the locally-hosted project.
 
+Enabling Jinja2 mode
+~~~~~~~~~~~~~~~~~~~~
+
+By default, the example gallery app renders all its examples using
+their Django template source. However, the examples also need to
+work on Jinja2! To make sure that they do, you'll want to run the
+app in Jinja2 mode, which can be done by setting the following
+environment variable prior to running the app::
+
+    export TEMPLATE_ENGINE=jinja2
+
 Running tests
-~~~~~~~~~~~~~
+-------------
 
 You can run all the tests with code coverage::
 
@@ -57,7 +68,7 @@ all supported runtimes and dependencies, run::
     tox
 
 Writing documentation
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 If you want to work on documentation, you can run the development
 documentation server with::

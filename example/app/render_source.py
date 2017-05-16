@@ -13,6 +13,7 @@ except ImportError:
 APP_DIR = Path(__file__).resolve().parent
 PY_DIR = APP_DIR / 'examples'
 TEMPLATES_DIR = APP_DIR / 'templates' / 'examples'
+JINJA2_DIR = APP_DIR / 'jinja2' / 'examples'
 
 
 def render_source(contents, filetype):
@@ -52,6 +53,11 @@ def clean_template_source(source):
 
 def render_template_source(filename):
     with open(str(TEMPLATES_DIR / filename)) as f:
+        return render_source(clean_template_source(f.read()), 'html+django')
+
+
+def render_jinja2_source(filename):
+    with open(str(JINJA2_DIR / filename)) as f:
         return render_source(clean_template_source(f.read()), 'html+django')
 
 

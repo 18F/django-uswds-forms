@@ -6,3 +6,4 @@ prune docs/_build
 recursive-include example *
 prune example/venv
 recursive-include uswds_forms/templates *
+recursive-include uswds_forms/jinja2 *

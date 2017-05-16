@@ -1,6 +1,5 @@
 from django.forms.utils import ErrorList
-from django.template.loader import render_to_string
-
+from django.utils.html import format_html, format_html_join
 
 __all__ = (
     'UswdsErrorList',
@@ -21,15 +20,17 @@ class UswdsErrorList(ErrorList):
     documentation on `customizing the error list format <https://docs.djangoproject.com/en/1.11/ref/forms/api/#customizing-the-error-list-format>`_.
     '''
 
-    def __str__(self):
-        return self.as_html()
-
-    def as_html(self):
-        # No idea what this line is for, but it's shown in sample code:
-        # https://docs.djangoproject.com/en/1.11/ref/forms/api/
+    def as_ul(self):
+        # Note that because we're a subclass of list, we're basically
+        # just testing to see if we're an empty list here.
         if not self:
             return ''
 
-        return render_to_string('uswds_forms/errors.html', {
-            'errors': self
-        })
+        return format_html(
+            '<ul class="usa-unstyled-list">{}</ul>',
+            format_html_join(
+                '',
+                '<li class="usa-input-error-message" role="alert">{}</li>',
+                ((e,) for e in self)
+            )
+        )

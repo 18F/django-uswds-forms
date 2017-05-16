@@ -1,0 +1,17 @@
+{% include 'example_form_submission_alert.html' %}
+
+<form method="post">
+  <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+  {{ form.non_field_errors() }}
+  <ol>
+    <li>{{ fieldset(form.president) }}</li>
+    <li>{{ fieldset(form.park) }}</li>
+    <li>{{ fieldset(form.states) }}</li>
+    <li>{{ fieldset(form.date) }}</li>
+  </ol>
+  {{ fieldset(form.trigger_non_field_error) }}
+  <button type="submit">Submit</button>
+  <button type="submit" class="usa-button-secondary" formnovalidate>
+    Submit without HTML5 form validation
+  </button>
+</form>
