@@ -5,3 +5,16 @@ python:
   - "3.6"
 install: pip install tox-travis
 script: tox
+env:
+  global:
+    - CF_CLI_VERSION=6.25.0
+before_deploy:
+  - export PATH=$HOME:$PATH
+  - travis_retry curl -L -o $HOME/cf.tgz "https://cli.run.pivotal.io/stable?release=linux64-binary&version=$CF_CLI_VERSION"
+  - tar xzvf $HOME/cf.tgz -C $HOME
+deploy:
+  - provider: script
+    script: ./deploy-travis.sh
+    skip_cleanup: true
+    on:
+      branch: master
