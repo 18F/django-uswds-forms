@@ -5,7 +5,11 @@ from django.utils.safestring import SafeString
 from django.utils.module_loading import import_string
 from django.urls import reverse
 
-from .render_source import render_template_source, render_python_source
+from .render_source import (
+    render_template_source,
+    render_jinja2_source,
+    render_python_source,
+)
 
 
 def add_links_to_docs(text: str) -> str:
@@ -58,6 +62,10 @@ class Example:
     @property
     def template_source(self):
         return render_template_source(self.basename + '.html')
+
+    @property
+    def jinja2_source(self):
+        return render_jinja2_source(self.basename + '.html')
 
     @property
     def url(self):
