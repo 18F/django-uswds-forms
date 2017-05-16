@@ -85,6 +85,9 @@ JINJA2_TEMPLATE_BACKEND = {
     'BACKEND': 'django.template.backends.jinja2.Jinja2',
     'DIRS': [],
     'APP_DIRS': True,
+    'OPTIONS': {
+        'environment': 'app.jinja2.environment',
+    }
 }
 
 template_engine = os.environ.get('TEMPLATE_ENGINE', 'django')

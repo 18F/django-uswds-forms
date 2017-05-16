@@ -7,6 +7,10 @@ from django.template.loader import render_to_string
 from . import date
 
 
+__all__ = (
+    'fieldset',
+)
+
 # The template path for a <fieldset> wrapping a form input. It
 # should exist for all supported template engines.
 TEMPLATE_NAME = 'uswds_forms/fieldset.html'
