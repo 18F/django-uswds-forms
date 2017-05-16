@@ -60,8 +60,17 @@ def get_context(field):
 
 def fieldset(field):
     '''
-    Render the given bound field as a <fieldset> using the current
-    template rendering engine and return it.
+    Render the given bound field as a ``<fieldset>``. The field’s label
+    is also rendered, along with any associated form errors and help text.
+
+    .. highlight:: html+django
+
+    Once added to a Jinja2 environment, this function can be used
+    from Jinja2 templates like so::
+
+        {{ fieldset(my_form.name) }}
+        {{ fieldset(my_form.address) }}
+        {{ fieldset(my_form.birthday) }}
     '''
 
     return SafeString(render_to_string(TEMPLATE_NAME, get_context(field)))

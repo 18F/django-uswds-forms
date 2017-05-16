@@ -42,6 +42,43 @@ Add ``uswds_forms`` to your ``INSTALLED_APPS`` setting, e.g.:
        # ...
    )
 
+.. _jinja2-setup:
+
+Jinja2 setup (optional)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+If you're using Django's default template backend, you don't need
+to do any extra configuration. However, if you're using the
+:class:`~django.template.backends.jinja2.Jinja2` backend,
+you might want to add some of this package's :ref:`jinja2-functions` to
+your Jinja2 environment.
+
+For example, you can create ``myproject/jinja2.py`` with this content:
+
+.. literalinclude:: ../example/app/jinja2.py
+   :language: python
+
+and in your ``settings.py``, set the ``environment`` option of the
+Jinja2 template engine to point at it, like so:
+
+.. code-block:: python
+
+   TEMPLATES = [
+       # ...
+       {
+           'BACKEND': 'django.template.backends.jinja2.Jinja2',
+           'DIRS': [],
+           'APP_DIRS': True,
+           'OPTIONS': {
+               'environment': 'myproject.jinja2.environment',
+           }
+       },
+       # ...
+   ]
+
+This will allow you to use e.g. the :func:`~uswds_forms.fieldset`
+function from any Jinja2 template.
+
 Getting started
 ~~~~~~~~~~~~~~~
 

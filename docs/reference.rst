@@ -2,10 +2,18 @@
 API reference
 =============
 
+.. _template-tags:
+
 Template tags
 =============
 
 .. highlight:: html+django
+
+.. important::
+
+    This section is for projects using Django's default
+    :class:`~django.template.backends.django.DjangoTemplates` backend. For
+    projects using Jinja2, see the :ref:`jinja2-functions` section.
 
 To use the following template tags, you'll need to load this package's
 custom template tag set in your templates like so::
@@ -33,6 +41,22 @@ Sample usage::
 .. highlight:: python
 
 .. currentmodule:: uswds_forms
+
+.. _jinja2-functions:
+
+Jinja2 functions
+================
+
+.. important::
+
+    This section is for projects using Django's
+    :class:`~django.template.backends.jinja2.Jinja2` backend. For
+    projects using Django templates, see the :ref:`template-tags` section.
+
+For details on how to register any of these functions with your Jinja2
+environment, see :ref:`jinja2-setup`.
+
+.. autofunction:: fieldset
 
 Form
 ====
