@@ -17,6 +17,15 @@ Prerequisites
 
 * You'll need Django 1.11.1 or later.
 
+* Your project needs to use either Django's default
+  :class:`~django.template.backends.django.DjangoTemplates`
+  or :class:`~django.template.backends.jinja2.Jinja2`
+  template engine.
+
+  In a similar vein, your forms need to use either Django's default
+  :class:`~django.forms.renderers.DjangoTemplates` or
+  :class:`~django.forms.renderers.Jinja2` form renderer.
+
 * Your project needs to use Python 3.
 
 Installation
