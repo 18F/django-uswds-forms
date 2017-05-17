@@ -9,6 +9,11 @@ SLUG_RE = re.compile('^[A-Za-z0-9_]+$')
 SLUG_HELP = "Alphanumerics and underscores only"
 EXAMPLE_NAMES_PATH = "app.views.EXAMPLE_NAMES"
 EXAMPLE_TESTS_PATH = APP_DIR / 'tests' / 'test_examples.py'
+TEMPLATE_NAME = '_startexample_template'
+
+
+def untemplatize(f: Path, example: Example):
+    return f.read_text().replace(TEMPLATE_NAME, example.basename)
 
 
 class Command(BaseCommand):
@@ -25,39 +30,39 @@ class Command(BaseCommand):
             help='Undo an earlier invocation of this command.'
         )
 
-    def undo_copy(self, src: Path, dest: Path) -> None:
+    def undo_copy(self, src: Path, dest: Path, example: Example) -> None:
         relpath = dest.relative_to(Path.cwd())
         if not dest.exists():
             self.stdout.write("Hmm, {} does not exist.".format(relpath))
-        elif dest.read_bytes() != src.read_bytes():
+        elif dest.read_text() != untemplatize(src, example):
             self.stdout.write("{} has changed, not deleting.".format(relpath))
         else:
             dest.unlink()
             self.stdout.write("Deleted {}.".format(relpath))
 
-    def copy(self, src: Path, dest: Path) -> None:
+    def copy(self, src: Path, dest: Path, example: Example) -> None:
         relpath = dest.relative_to(Path.cwd())
         if dest.exists():
             self.stdout.write("{} exists, not overwriting.".format(relpath))
         else:
-            dest.write_bytes(src.read_bytes())
+            dest.write_text(untemplatize(src, example))
             self.stdout.write("Created {}.".format(relpath))
 
     def handle(self, example_slug: str, undo: bool, **kwargs):
         if not SLUG_RE.match(example_slug):
             raise CommandError('Invalid slug! {}.'.format(SLUG_HELP))
 
-        template = Example('_startexample_template')
-        example = Example(example_slug)
+        template = Example(TEMPLATE_NAME)
+        ex = Example(example_slug)
 
         if undo:
-            self.undo_copy(template.template_path, example.template_path)
-            self.undo_copy(template.jinja2_path, example.jinja2_path)
-            self.undo_copy(template.python_path, example.python_path)
+            self.undo_copy(template.template_path, ex.template_path, ex)
+            self.undo_copy(template.jinja2_path, ex.jinja2_path, ex)
+            self.undo_copy(template.python_path, ex.python_path, ex)
         else:
-            self.copy(template.template_path, example.template_path)
-            self.copy(template.jinja2_path, example.jinja2_path)
-            self.copy(template.python_path, example.python_path)
+            self.copy(template.template_path, ex.template_path, ex)
+            self.copy(template.jinja2_path, ex.jinja2_path, ex)
+            self.copy(template.python_path, ex.python_path, ex)
 
             self.stdout.write("\nDone! Now edit the above files.")
             self.stdout.write("Then, add '{}' to {}.".format(

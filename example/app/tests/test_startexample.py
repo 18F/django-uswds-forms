@@ -61,6 +61,8 @@ class ClosepollTest(TestCase):
         self.assertIn('Created', output)
         for path in self.paths:
             self.assertTrue(path.exists(), '{} was created'.format(path))
+        self.assertIn(self.example.basename,
+                      self.example.python_path.read_text())
 
     def test_undo_works(self):
         self.call(self.example.basename)

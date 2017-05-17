@@ -1,5 +1,5 @@
 '''
-TODO: Put example name here.
+TODO: Put human-readable name for '_startexample_template' here.
 
 TODO: Put example description here.
 '''
@@ -21,6 +21,6 @@ class MyForm(uswds_forms.UswdsForm):
 
 
 def view(request):
-    return render(request, 'examples/new_example_template.html', {
+    return render(request, 'examples/_startexample_template.html', {
         'form': MyForm() if request.method == 'GET' else MyForm(request.POST)
     })
