@@ -24,6 +24,10 @@ Then install django-uswds-forms in development mode::
 
     python setup.py develop
 
+You will also need to download `PhantomJS <http://phantomjs.org/>`_
+and put it somewhere on your ``PATH``, as it's required by the
+test suite.
+
 Running the example gallery app
 -------------------------------
 
@@ -50,6 +54,18 @@ To add a new example to the gallery, run::
 Where ``<example-slug>`` is a slug for your new example, e.g.
 ``my_cool_example``. The output of the command will tell you
 what to do next.
+
+Note that certain kinds of tests are automatically run on all examples:
+
+* A ``GET`` request is made on the example's view, and its status
+  code is expected to be 200.
+
+* The example is rendered with its Django and Jinja2 template, and
+  both versions are expected to produce the same HTML.
+
+* The example is analyzed by
+  `aXe <https://github.com/dequelabs/axe-core#readme>`_ and expected
+  to produce no accessibility violations.
 
 Enabling Jinja2 mode
 ~~~~~~~~~~~~~~~~~~~~
