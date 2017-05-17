@@ -16,7 +16,7 @@ class AxeTests(StaticLiveServerTestCase, metaclass=TestEachExample):
 
     @classmethod
     def setUpClass(cls):
-        super(MySeleniumTests, cls).setUpClass()
+        super().setUpClass()
         cls.axe_js = AXE_JS.read_text()
         cls.selenium = webdriver.PhantomJS()
         cls.selenium.implicitly_wait(10)
