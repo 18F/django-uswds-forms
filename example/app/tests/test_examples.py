@@ -7,54 +7,10 @@ from django.shortcuts import render
 from django.forms.renderers import Jinja2, DjangoTemplates
 from django.conf import settings
 
-from .views import EXAMPLES
-from .example import add_links_to_docs
-from .render_source import clean_python_source, clean_template_source
+from ..views import EXAMPLES
 
 
-class RenderSourceTests(TestCase):
-    def test_clean_python_source_works(self):
-        self.assertEqual(
-            clean_python_source("'''boop\n'''\nhello()\nthere()\n"),
-            "hello()\nthere()"
-        )
-
-    def test_clean_template_source_works(self):
-        self.assertEqual(
-            clean_template_source(r"{% include 'foo' %}" + "\nblah\n"),
-            'blah'
-        )
-
-
-@override_settings(DOCS_URL="http://docs/")
-class AddLinksToDocsTests(TestCase):
-    def test_it_does_nothing_when_docs_have_no_links(self):
-        self.assertEqual(add_links_to_docs('foo bar baz'), 'foo bar baz')
-
-    def test_it_hyperlinks_uswds_links(self):
-        self.assertEqual(
-            add_links_to_docs('foo uswds_forms.UswdsForm baz'),
-            'foo <a href="http://docs/reference.html#uswds_forms.UswdsForm">'
-            '<code>UswdsForm</code></a> baz'
-        )
-
-    def test_it_does_not_hyperlink_final_periods(self):
-        self.assertEqual(
-            add_links_to_docs('foo uswds_forms.UswdsForm. yup.'),
-            'foo <a href="http://docs/reference.html#uswds_forms.UswdsForm">'
-            '<code>UswdsForm</code></a>. yup.'
-        )
-
-
-class AppTests(TestCase):
-    def test_home_returns_200(self):
-        res = self.client.get('/')
-        self.assertEqual(res.status_code, 200)
-
-    def test_nonexistent_example_returns_404(self):
-        res = self.client.get('/example/zzz')
-        self.assertContains(res, 'Example not found', status_code=404)
-
+class SmokeTests(TestCase):
     def test_all_examples_return_200(self):
         for ex in EXAMPLES.values():
             res = self.client.get('/example/' + ex.basename)
