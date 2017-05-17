@@ -12,6 +12,11 @@ from ..views import EXAMPLES
                settings.JINJA2_TEMPLATE_BACKEND]
 )
 class TemplateEngineParityTests(TestCase):
+    '''
+    This renders each example using its Django and Jinja2 template
+    and ensures that both produce the same HTML.
+    '''
+
     def make_renderer(self, engine_name, form_renderer):
         def force_render_using_engine(req, template_name, ctx):
             ctx['form'].renderer = form_renderer
