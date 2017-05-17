@@ -5,6 +5,8 @@ from collections import OrderedDict
 
 from .example import Example
 
+# This is a list of every example in the gallery; the order determines
+# the order in which they are listed on the site.
 EXAMPLE_NAMES = [
     'radios',
     'checkboxes',
