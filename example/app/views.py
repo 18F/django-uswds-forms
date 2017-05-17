@@ -15,7 +15,9 @@ EXAMPLE_NAMES = [
     'everything',
 ]
 
-EXAMPLES = OrderedDict([(name, Example(name)) for name in EXAMPLE_NAMES])
+EXAMPLES = OrderedDict([
+    (name, Example(name, load=True)) for name in EXAMPLE_NAMES
+])
 
 
 def ctx(**kwargs):
