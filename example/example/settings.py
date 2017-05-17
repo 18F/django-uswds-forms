@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 from django.core.exceptions import ImproperlyConfigured
 
 try:
@@ -101,7 +102,9 @@ elif template_engine == 'django':
 else:
     raise ImproperlyConfigured('Invalid TEMPLATE_ENGINE: ' + template_engine)
 
-print("Examples will be rendered using {} templates.".format(template_engine))
+if len(sys.argv) > 1 and sys.argv[1] == 'runserver':
+    print("Examples will be rendered using "
+          "{} templates.".format(template_engine))
 
 WSGI_APPLICATION = 'example.wsgi.application'
 
