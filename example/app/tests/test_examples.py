@@ -3,14 +3,13 @@ from unittest import SkipTest
 from typing import Dict
 from django.test import TestCase
 
-from ..views import EXAMPLES
+from .util import TestEachExample
 
 
-class SmokeTests(TestCase):
-    def test_all_examples_return_200(self):
-        for ex in EXAMPLES.values():
-            res = self.client.get('/example/' + ex.basename)
-            self.assertEqual(res.status_code, 200)
+class ExamplesReturn200Tests(TestCase, metaclass=TestEachExample):
+    def test(self, example):
+        res = self.client.get('/example/' + example.basename)
+        self.assertEqual(res.status_code, 200)
 
 
 class ExampleMixin(metaclass=abc.ABCMeta):
