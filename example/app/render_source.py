@@ -10,13 +10,8 @@ try:
 except ImportError:
     highlight = None
 
-APP_DIR = Path(__file__).resolve().parent
-PY_DIR = APP_DIR / 'examples'
-TEMPLATES_DIR = APP_DIR / 'templates' / 'examples'
-JINJA2_DIR = APP_DIR / 'jinja2' / 'examples'
 
-
-def render_source(contents, filetype):
+def render_source(contents: str, filetype: str):
     if highlight is None:
         return contents
     else:
@@ -30,7 +25,7 @@ def render_source(contents, filetype):
         return SafeString(highlight(contents, lexer, formatter))
 
 
-def clean_python_source(source):
+def clean_python_source(source: str):
     '''
     Remove the leading docstring from the given source code.
     '''
@@ -40,7 +35,7 @@ def clean_python_source(source):
     return '\n'.join(source.splitlines()[first_non_docstring.lineno - 1:])
 
 
-def clean_template_source(source):
+def clean_template_source(source: str):
     '''
     Remove any un-indented {% include %} tags in the given template source.
     '''
@@ -51,16 +46,9 @@ def clean_template_source(source):
     )
 
 
-def render_template_source(filename):
-    with open(str(TEMPLATES_DIR / filename)) as f:
-        return render_source(clean_template_source(f.read()), 'html+django')
+def render_template_source(f: Path):
+    return render_source(clean_template_source(f.read_text()), 'html+django')
 
 
-def render_jinja2_source(filename):
-    with open(str(JINJA2_DIR / filename)) as f:
-        return render_source(clean_template_source(f.read()), 'html+django')
-
-
-def render_python_source(filename):
-    with open(str(PY_DIR / filename)) as f:
-        return render_source(clean_python_source(f.read()), 'python')
+def render_python_source(f: Path):
+    return render_source(clean_python_source(f.read_text()), 'python')

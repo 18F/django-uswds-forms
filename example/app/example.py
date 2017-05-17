@@ -1,15 +1,17 @@
 import re
+from pathlib import Path
 from typing import Match
 from django.conf import settings
 from django.utils.safestring import SafeString
 from django.utils.module_loading import import_string
 from django.urls import reverse
 
-from .render_source import (
-    render_template_source,
-    render_jinja2_source,
-    render_python_source,
-)
+from .render_source import render_template_source, render_python_source
+
+APP_DIR = Path(__file__).resolve().parent
+PY_DIR = APP_DIR / 'examples'
+TEMPLATES_DIR = APP_DIR / 'templates' / 'examples'
+JINJA2_DIR = APP_DIR / 'jinja2' / 'examples'
 
 
 def add_links_to_docs(text: str) -> str:
@@ -49,7 +51,7 @@ def add_links_to_docs(text: str) -> str:
 
 
 class Example:
-    def __init__(self, basename):
+    def __init__(self, basename: str) -> None:
         self.basename = basename
         self.view = import_string('app.examples.' + basename + '.view')
         self.module = import_string('app.examples.' + basename)
@@ -57,15 +59,17 @@ class Example:
         docstr = import_string('app.examples.' + basename + '.__doc__')
         self.name, description = docstr.split('\n\n', 1)
         self.description = SafeString(add_links_to_docs(description))
-        self.python_source = render_python_source(basename + '.py')
+        self.python_source = render_python_source(PY_DIR / (basename + '.py'))
+        self.template_path = TEMPLATES_DIR / (basename + '.html')
+        self.jinja2_path = JINJA2_DIR / (basename + '.html')
 
     @property
     def template_source(self):
-        return render_template_source(self.basename + '.html')
+        return render_template_source(self.template_path)
 
     @property
     def jinja2_source(self):
-        return render_jinja2_source(self.basename + '.html')
+        return render_template_source(self.jinja2_path)
 
     @property
     def url(self):
