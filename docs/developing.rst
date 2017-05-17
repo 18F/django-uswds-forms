@@ -40,6 +40,17 @@ To use it, run the following from the root of the repository::
 
 At this point you should be able to visit the locally-hosted project.
 
+Adding new examples
+~~~~~~~~~~~~~~~~~~~
+
+To add a new example to the gallery, run::
+
+    python manage.py startexample <example-slug>
+
+Where ``<example-slug>`` is a slug for your new example, e.g.
+``my_cool_example``. The output of the command will tell you
+what to do next.
+
 Enabling Jinja2 mode
 ~~~~~~~~~~~~~~~~~~~~
 

@@ -51,17 +51,23 @@ def add_links_to_docs(text: str) -> str:
 
 
 class Example:
-    def __init__(self, basename: str) -> None:
+    def __init__(self, basename: str, load: bool=False) -> None:
         self.basename = basename
-        self.view = import_string('app.examples.' + basename + '.view')
-        self.module = import_string('app.examples.' + basename)
-
-        docstr = import_string('app.examples.' + basename + '.__doc__')
-        self.name, description = docstr.split('\n\n', 1)
-        self.description = SafeString(add_links_to_docs(description))
-        self.python_source = render_python_source(PY_DIR / (basename + '.py'))
         self.template_path = TEMPLATES_DIR / (basename + '.html')
         self.jinja2_path = JINJA2_DIR / (basename + '.html')
+        self.python_path = PY_DIR / (basename + '.py')
+
+        if load:
+            self.load()
+
+    def load(self):
+        self.view = import_string('app.examples.' + self.basename + '.view')
+        self.module = import_string('app.examples.' + self.basename)
+
+        docstr = import_string('app.examples.' + self.basename + '.__doc__')
+        self.name, description = docstr.split('\n\n', 1)
+        self.description = SafeString(add_links_to_docs(description))
+        self.python_source = render_python_source(self.python_path)
 
     @property
     def template_source(self):
