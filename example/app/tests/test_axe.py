@@ -24,7 +24,7 @@ class AxeTests(StaticLiveServerTestCase, metaclass=TestEachExample):
     @classmethod
     def tearDownClass(cls):
         cls.selenium.quit()
-        super(MySeleniumTests, cls).tearDownClass()
+        super().tearDownClass()
 
     def test(self, example):
         self.selenium.get('%s%s' % (self.live_server_url, example.url))
