@@ -5,4 +5,4 @@ from .radio_and_checkbox import *  # NOQA
 from .fieldset_helper import *  # NOQA
 
 
-VERSION = '0.0.3'
+VERSION = '0.0.4'
