@@ -11,9 +11,6 @@ Welcome to the `django-uswds-forms <https://github.com/18F/django-uswds-forms>`_
 This package provides `Django Forms <https://docs.djangoproject.com/en/1.11/topics/forms/#the-django-form-class>`_
 integration with the `U.S. Web Design Standards <https://standards.usa.gov/>`_.
 
-For practical examples of this package in use, see the
-`example gallery <https://django-uswds-forms.app.cloud.gov>`_.
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -21,7 +18,6 @@ For practical examples of this package in use, see the
    introduction
    quickstart
    reference
-   Example gallery <https://django-uswds-forms.app.cloud.gov/>
    developing
 
 Indices and tables

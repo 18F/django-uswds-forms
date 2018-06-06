@@ -91,9 +91,8 @@ function from any Jinja2 template.
 Getting started
 ~~~~~~~~~~~~~~~
 
-One way to get started is by visiting the `example gallery
-<https://django-uswds-forms.app.cloud.gov/>`_.  It contains a number
-of examples in increasing complexity.  Each example can be tinkered
+One way to get started is by visiting the example gallery.  It contains
+a number of examples in increasing complexity.  Each example can be tinkered
 with, and you can also easily view its Python and Django template source
 code.
 
