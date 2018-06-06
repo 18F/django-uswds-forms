@@ -10,3 +10,4 @@ htmlcov/
 .cache/
 .mypy_cache/
 docs/_build/
+.pytest_cache/
