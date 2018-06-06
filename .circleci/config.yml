@@ -20,7 +20,9 @@ jobs:
       - restore_cache:
           key: tox-2.7.0-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}-{{ checksum "tox.ini" }}
       - run:
-          command: tox
+          command: |
+            . venv/bin/activate
+            tox
       - save_cache:
           key: tox-2.7.0-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}-{{ checksum "tox.ini" }}
           paths:
