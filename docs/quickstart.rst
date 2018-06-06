@@ -33,10 +33,9 @@ Installation
 
 .. highlight:: none
 
-This package isn't on PyPI yet, so you'll need to install it directly
-from GitHub for now::
+You can install this package from PyPI::
 
-    pip install git+git://github.com/18F/django-uswds-forms
+    pip install django-uswds-forms
 
 Required settings
 ~~~~~~~~~~~~~~~~~
