@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-django-uswds-forms
+    docker:
+      - image: circleci/python:3.6.5-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: venv-tox-2.7.0
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r tox==2.7.0
+      - save_cache:
+          key: venv-tox-2.7.0
+          paths:
+            - "venv"
+      - restore_cache:
+          key: tox-2.7.0-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}-{{ checksum "tox.ini" }}
+      - run:
+          command: tox
+      - save_cache:
+          key: tox-2.7.0-{{ .Branch }}-{{ checksum "requirements-dev.txt" }}-{{ checksum "tox.ini" }}
+          paths:
+            - ".tox"
