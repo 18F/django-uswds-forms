@@ -12,7 +12,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r tox==2.7.0
+            pip install tox==2.7.0
       - save_cache:
           key: venv-tox-2.7.0
           paths:
