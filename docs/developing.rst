@@ -101,3 +101,9 @@ If you want to work on documentation, you can run the development
 documentation server with::
 
     python setup.py devdocs
+
+Publishing a new release
+------------------------
+
+See `RELEASE.md <https://github.com/18F/django-uswds-forms/blob/master/RELEASE.md>`_
+for details on publishing a new release.
