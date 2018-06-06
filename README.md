@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/18F/django-uswds-forms.svg?branch=master)](https://travis-ci.org/18F/django-uswds-forms)
+[![CircleCI](https://circleci.com/gh/18F/django-uswds-forms.svg?style=svg)](https://circleci.com/gh/18F/django-uswds-forms)
 
 This package provides [Django Forms][django-forms] integration with the
 [U.S. Web Design Standards][uswds].
